@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     li.addEventListener("dragend", function () {
       li.classList.remove("is-dragging");
+      sourceList.classList.remove("is-drag-over");
+      targetList.classList.remove("is-drag-over");
     });
 
     return li;
@@ -28,13 +30,30 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   [sourceList, targetList].forEach(function (list) {
+    var dragEnterCount = 0;
+
     list.addEventListener("dragover", function (event) {
       event.preventDefault();
     });
 
+    list.addEventListener("dragenter", function (event) {
+      event.preventDefault();
+      dragEnterCount += 1;
+      list.classList.add("is-drag-over");
+    });
+
+    list.addEventListener("dragleave", function () {
+      dragEnterCount -= 1;
+      if (dragEnterCount <= 0) {
+        dragEnterCount = 0;
+        list.classList.remove("is-drag-over");
+      }
+    });
+
     list.addEventListener("drop", function (event) {
       event.preventDefault();
-      var text = event.dataTransfer.getData("text/plain");
+      dragEnterCount = 0;
+      list.classList.remove("is-drag-over");
       var dragging = document.querySelector(".dnd-item.is-dragging");
       if (dragging) {
         list.appendChild(dragging);

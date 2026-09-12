@@ -698,6 +698,23 @@ table.data-table th .sort-indicator {
   background: var(--color-bg);
   border: 1.5px dashed var(--color-border);
   border-radius: var(--radius-md);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.dnd-list:empty::before {
+  content: attr(data-placeholder);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 196px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.dnd-list.is-drag-over {
+  background: var(--color-primary-soft);
+  border-color: var(--color-primary);
 }
 
 .dnd-list__title {
