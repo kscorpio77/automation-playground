@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("testground_theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
   <title>Dynamic Content &amp; Waits - Automation Testground</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/styles.css" />
@@ -53,15 +61,33 @@
       </div>
       <p data-testid="progress-status" id="progress-status">0%</p>
     </section>
+
+    <div id="selector-ref-mount"></div>
   </main>
 
   <div id="site-footer-mount"></div>
 
   <script src="../js/nav.js"></script>
+  <script src="../js/selector-ref.js"></script>
   <script src="../js/dynamic-content.js"></script>
   <script>
     renderSiteNav("../", "nav-dynamic-content");
     renderSiteFooter();
+    renderSelectorReference("selector-ref-mount", [
+      "section-loading",
+      "button-start-loading",
+      "loading-spinner",
+      "loaded-content",
+      "section-delayed-enable",
+      "button-delayed-enable",
+      "section-toggle",
+      "button-toggle-panel",
+      "toggle-panel",
+      "section-progress",
+      "button-start-progress",
+      "progress-fill",
+      "progress-status"
+    ]);
   </script>
 </body>
 </html>

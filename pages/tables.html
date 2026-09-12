@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("testground_theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
   <title>Tables &amp; Data - Automation Testground</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/styles.css" />
@@ -38,15 +46,37 @@
 
       <div class="pagination" id="table-pagination" data-testid="table-pagination"></div>
     </section>
+
+    <div id="selector-ref-mount"></div>
   </main>
 
   <div id="site-footer-mount"></div>
 
   <script src="../js/nav.js"></script>
+  <script src="../js/selector-ref.js"></script>
   <script src="../js/tables.js"></script>
   <script>
     renderSiteNav("../", "nav-tables");
     renderSiteFooter();
+    renderSelectorReference("selector-ref-mount", [
+      "table-search",
+      "table-result-count",
+      "data-table",
+      "table-header-name",
+      "table-header-role",
+      "table-header-department",
+      "table-header-experience",
+      "table-body",
+      "table-row-{id}",
+      "cell-name-{id}",
+      "cell-role-{id}",
+      "cell-department-{id}",
+      "cell-experience-{id}",
+      "table-pagination",
+      "pagination-prev",
+      "pagination-page-{n}",
+      "pagination-next"
+    ], "{id} is the row's numeric id (1-25); {n} is a 1-based page number.");
   </script>
 </body>
 </html>

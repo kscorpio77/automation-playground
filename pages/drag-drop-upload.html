@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("testground_theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
   <title>Drag, Drop &amp; Upload - Automation Testground</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/styles.css" />
@@ -43,15 +51,33 @@
       <h2 class="card__title">Embedded iframe</h2>
       <iframe class="embedded-frame" src="iframe-content.html" data-testid="embedded-iframe" title="Embedded content"></iframe>
     </section>
+
+    <div id="selector-ref-mount"></div>
   </main>
 
   <div id="site-footer-mount"></div>
 
   <script src="../js/nav.js"></script>
+  <script src="../js/selector-ref.js"></script>
   <script src="../js/drag-drop-upload.js"></script>
   <script>
     renderSiteNav("../", "nav-drag-drop-upload");
     renderSiteFooter();
+    renderSelectorReference("selector-ref-mount", [
+      "section-drag-drop",
+      "dnd-list-source",
+      "dnd-list-target",
+      "dnd-item-selenium",
+      "dnd-item-playwright",
+      "dnd-item-cypress",
+      "dnd-item-puppeteer",
+      "dnd-item-webdriverio",
+      "section-file-upload",
+      "file-input",
+      "file-upload-result",
+      "section-iframe",
+      "embedded-iframe"
+    ], "The iframe's own content (iframe-content.html) has its own data-testid values: iframe-content-text and iframe-button - switch into the frame before querying them.");
   </script>
 </body>
 </html>

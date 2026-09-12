@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("testground_theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
   <title>Automation Testground</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/styles.css" />
@@ -24,10 +32,29 @@
       </p>
     </div>
 
+    <div class="card" style="margin-bottom: 32px;">
+      <h2 class="card__title">Quick start</h2>
+      <div class="code-block">
+        <div class="code-block__header">
+          <span class="code-block__label">Shell</span>
+          <button type="button" class="copy-btn" id="quickstart-copy" data-testid="button-copy-quickstart">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            <span>Copy</span>
+          </button>
+        </div>
+        <pre><code id="quickstart-code">git clone https://github.com/developerpreetiverma/automation-testground.git
+cd automation-testground
+docker build -t automation-testground:1.0.0 .
+docker run --rm -p 8080:80 automation-testground:1.0.0</code></pre>
+      </div>
+    </div>
+
     <div class="home-grid" data-testid="home-links">
       <a href="pages/forms.html" data-testid="home-link-forms">
         <div class="home-card">
-          <div class="home-card__icon" aria-hidden="true">📝</div>
+          <div class="home-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          </div>
           <h2 class="home-card__title">Forms &amp; Validation</h2>
           <p class="home-card__desc">Text fields, dropdowns, checkboxes, radios, client-side validation errors.</p>
           <span class="home-card__arrow">Open page &rarr;</span>
@@ -35,7 +62,9 @@
       </a>
       <a href="pages/dynamic-content.html" data-testid="home-link-dynamic-content">
         <div class="home-card">
-          <div class="home-card__icon" aria-hidden="true">⏳</div>
+          <div class="home-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
           <h2 class="home-card__title">Dynamic Content &amp; Waits</h2>
           <p class="home-card__desc">Spinners, delayed elements, buttons that enable after a delay, progress bars.</p>
           <span class="home-card__arrow">Open page &rarr;</span>
@@ -43,7 +72,9 @@
       </a>
       <a href="pages/tables.html" data-testid="home-link-tables">
         <div class="home-card">
-          <div class="home-card__icon" aria-hidden="true">📊</div>
+          <div class="home-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6" fill="currentColor" stroke="none"/><rect x="12" y="8" width="3" height="10" fill="currentColor" stroke="none"/><rect x="17" y="5" width="3" height="13" fill="currentColor" stroke="none"/></svg>
+          </div>
           <h2 class="home-card__title">Tables &amp; Data</h2>
           <p class="home-card__desc">Sortable columns, search filtering, pagination over a static dataset.</p>
           <span class="home-card__arrow">Open page &rarr;</span>
@@ -51,7 +82,9 @@
       </a>
       <a href="pages/modals-alerts.html" data-testid="home-link-modals-alerts">
         <div class="home-card">
-          <div class="home-card__icon" aria-hidden="true">💬</div>
+          <div class="home-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
           <h2 class="home-card__title">Modals &amp; Alerts</h2>
           <p class="home-card__desc">Native alert/confirm/prompt dialogs, a custom modal, and a hover tooltip.</p>
           <span class="home-card__arrow">Open page &rarr;</span>
@@ -59,7 +92,9 @@
       </a>
       <a href="pages/drag-drop-upload.html" data-testid="home-link-drag-drop-upload">
         <div class="home-card">
-          <div class="home-card__icon" aria-hidden="true">🖱️</div>
+          <div class="home-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/></svg>
+          </div>
           <h2 class="home-card__title">Drag, Drop &amp; Upload</h2>
           <p class="home-card__desc">Drag-and-drop between lists, a file input, and an embedded iframe.</p>
           <span class="home-card__arrow">Open page &rarr;</span>
@@ -67,7 +102,9 @@
       </a>
       <a href="pages/login.html" data-testid="home-link-login">
         <div class="home-card">
-          <div class="home-card__icon" aria-hidden="true">🔒</div>
+          <div class="home-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          </div>
           <h2 class="home-card__title">Mocked Login Flow</h2>
           <p class="home-card__desc">Login form, a protected dashboard page, and logout &mdash; state kept in localStorage.</p>
           <span class="home-card__arrow">Open page &rarr;</span>
@@ -82,6 +119,21 @@
   <script>
     renderSiteNav("", "nav-home");
     renderSiteFooter();
+
+    var quickstartCopyBtn = document.getElementById("quickstart-copy");
+    quickstartCopyBtn.addEventListener("click", function () {
+      var text = document.getElementById("quickstart-code").textContent;
+      var label = quickstartCopyBtn.querySelector("span");
+      var original = label.textContent;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          label.textContent = "Copied!";
+          setTimeout(function () {
+            label.textContent = original;
+          }, 1500);
+        });
+      }
+    });
   </script>
 </body>
 </html>

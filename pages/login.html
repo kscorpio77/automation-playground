@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("testground_theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
   <title>Login - Automation Testground</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/styles.css" />
@@ -39,15 +47,25 @@
         Try username <code>student</code> and password <code>practice123</code>.
       </p>
     </form>
+
+    <div id="selector-ref-mount"></div>
   </main>
 
   <div id="site-footer-mount"></div>
 
   <script src="../js/nav.js"></script>
+  <script src="../js/selector-ref.js"></script>
   <script src="../js/login.js"></script>
   <script>
     renderSiteNav("../", "nav-login");
     renderSiteFooter();
+    renderSelectorReference("selector-ref-mount", [
+      "login-form",
+      "input-login-username",
+      "input-login-password",
+      "button-login",
+      "login-error"
+    ], "On success this redirects to dashboard.html, a protected page gated on localStorage.");
   </script>
 </body>
 </html>

@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("testground_theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
   <title>Forms &amp; Validation - Automation Testground</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/styles.css" />
@@ -91,15 +99,39 @@
 
       <div class="alert alert--success" data-testid="form-success">Account created successfully.</div>
     </form>
+
+    <div id="selector-ref-mount"></div>
   </main>
 
   <div id="site-footer-mount"></div>
 
   <script src="../js/nav.js"></script>
+  <script src="../js/selector-ref.js"></script>
   <script src="../js/forms.js"></script>
   <script>
     renderSiteNav("../", "nav-forms");
     renderSiteFooter();
+    renderSelectorReference("selector-ref-mount", [
+      "registration-form",
+      "input-username",
+      "error-username",
+      "input-email",
+      "error-email",
+      "input-password",
+      "error-password",
+      "select-country",
+      "error-country",
+      "checkbox-interest-selenium",
+      "checkbox-interest-playwright",
+      "checkbox-interest-cypress",
+      "radio-level-beginner",
+      "radio-level-intermediate",
+      "radio-level-advanced",
+      "error-level",
+      "button-submit",
+      "button-reset",
+      "form-success"
+    ]);
   </script>
 </body>
 </html>
