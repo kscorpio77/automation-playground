@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.1.0 - 2026-09-12
+
+Additive release, no breaking changes to 1.0.0 selectors:
+
+- Dark mode (system-detected, with a manual toggle in the nav) and real SVG icons in place of
+  emoji.
+- A "Selectors on this page" reference panel on every challenge page, listing the exact
+  `data-testid` CSS selectors with a copy-all button.
+- A "Quick start" copyable code block on the homepage.
+- A custom (non-native) calendar date picker on the Forms & Validation page: `section-date-picker`,
+  `date-picker-input`, `date-picker-calendar`, `button-date-picker-prev-month`,
+  `date-picker-month-label`, `button-date-picker-next-month`, `button-date-picker-today`,
+  `button-date-picker-clear`, and `date-picker-day-{yyyy-mm-dd}` for each day in the visible month.
+- Fixed the drag-and-drop "Selected" list, which was a confusing blank box when empty; it now
+  shows a placeholder and highlights on drag-over.
+
 ## 1.0.0 - 2026-09-12
 
 Initial release. Includes:

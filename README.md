@@ -14,8 +14,8 @@ script keeps working no matter what changes in later versions.
 ```bash
 git clone <this-repo-url>
 cd automation-testground
-docker build -t automation-testground:1.0.0 .
-docker run --rm -p 8080:80 automation-testground:1.0.0
+docker build -t automation-testground:1.1.0 .
+docker run --rm -p 8080:80 automation-testground:1.1.0
 ```
 
 Then open http://localhost:8080 in your browser.
@@ -29,7 +29,7 @@ old image alongside the new one — your existing scripts will keep passing agai
 | Page | Path | What to practice |
 | --- | --- | --- |
 | Home | `index.html` | Basic navigation |
-| Forms & Validation | `pages/forms.html` | Text/email/password inputs, select, checkboxes, radios, client-side validation errors |
+| Forms & Validation | `pages/forms.html` | Text/email/password inputs, select, checkboxes, radios, client-side validation errors, a custom (non-native) calendar date picker |
 | Dynamic Content & Waits | `pages/dynamic-content.html` | Spinners, delayed content, a button that enables after a delay, show/hide toggle, progress bar |
 | Tables & Data | `pages/tables.html` | Sortable columns, search filtering, pagination |
 | Modals & Alerts | `pages/modals-alerts.html` | Native `alert`/`confirm`/`prompt`, a custom modal dialog, a hover tooltip |
