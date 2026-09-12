@@ -41,6 +41,28 @@
       </div>
     </section>
 
+    <section class="card" data-testid="section-listbox">
+      <h2 class="card__title">Dropdown list box</h2>
+      <p class="field-hint">
+        A custom multi-select dropdown &mdash; options render as plain elements in the page, not
+        inside a native &lt;select&gt;, so each one is independently selectable and queryable.
+      </p>
+
+      <div class="listbox" id="tools-listbox" data-testid-prefix="listbox">
+        <button type="button" class="listbox__trigger" data-role="trigger" data-testid="listbox-trigger">
+          <span class="listbox__trigger-label" data-role="trigger-label">Select tools&hellip;</span>
+          <svg class="listbox__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="listbox__panel" data-testid="listbox-panel">
+          <div class="listbox__options" data-role="options"></div>
+          <div class="listbox__footer">
+            <span class="listbox__count" data-role="selected-count" data-testid="listbox-selected-count">0 selected</span>
+            <button type="button" class="listbox__clear" data-role="clear" data-testid="button-listbox-clear">Clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="card" data-testid="section-file-upload">
       <h2 class="card__title">File upload</h2>
       <input type="file" id="file-input" data-testid="file-input" />
@@ -60,9 +82,11 @@
   <script src="../js/nav.js"></script>
   <script src="../js/selector-ref.js"></script>
   <script src="../js/drag-drop-upload.js"></script>
+  <script src="../js/listbox.js"></script>
   <script>
     renderSiteNav("../", "nav-drag-drop-upload");
     renderSiteFooter();
+    initListbox("tools-listbox", ["Selenium", "Playwright", "Cypress", "Puppeteer", "WebdriverIO", "TestCafe"]);
     renderSelectorReference("selector-ref-mount", [
       "section-drag-drop",
       "dnd-list-source",
@@ -72,12 +96,18 @@
       "dnd-item-cypress",
       "dnd-item-puppeteer",
       "dnd-item-webdriverio",
+      "section-listbox",
+      "listbox-trigger",
+      "listbox-panel",
+      "listbox-option-{slug}",
+      "listbox-selected-count",
+      "button-listbox-clear",
       "section-file-upload",
       "file-input",
       "file-upload-result",
       "section-iframe",
       "embedded-iframe"
-    ], "The iframe's own content (iframe-content.html) has its own data-testid values: iframe-content-text and iframe-button - switch into the frame before querying them.");
+    ], "listbox-option-{slug} - one per option, e.g. listbox-option-selenium, listbox-option-webdriverio, listbox-option-testcafe. The iframe's own content (iframe-content.html) has its own data-testid values: iframe-content-text and iframe-button - switch into the frame before querying them.");
   </script>
 </body>
 </html>

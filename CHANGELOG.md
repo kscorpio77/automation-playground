@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.2.0 - 2026-09-12
+
+Additive release, no breaking changes to earlier selectors:
+
+- Added a custom multi-select "dropdown list box" to the Drag, Drop & Upload page:
+  `section-listbox`, `listbox-trigger`, `listbox-panel`, `listbox-selected-count`,
+  `button-listbox-clear`, and `listbox-option-{slug}` for each option (e.g.
+  `listbox-option-selenium`, `listbox-option-webdriverio`).
+- Fixed the "Available"/"Selected" drag-and-drop columns being different heights when one had
+  more items than the other; they now always match.
+
 ## 1.1.0 - 2026-09-12
 
 Additive release, no breaking changes to 1.0.0 selectors:

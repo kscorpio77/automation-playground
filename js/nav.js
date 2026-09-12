@@ -1,7 +1,7 @@
 // Shared site chrome: top navigation and footer.
 // data-testid values here are part of the stable contract for this major version.
 
-var APP_VERSION = "1.1.0";
+var APP_VERSION = "1.2.0";
 var REPO_URL = "https://github.com/developerpreetiverma/automation-testground";
 
 var NAV_LINKS = [

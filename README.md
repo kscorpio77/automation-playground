@@ -14,8 +14,8 @@ script keeps working no matter what changes in later versions.
 ```bash
 git clone <this-repo-url>
 cd automation-testground
-docker build -t automation-testground:1.1.0 .
-docker run --rm -p 8080:80 automation-testground:1.1.0
+docker build -t automation-testground:1.2.0 .
+docker run --rm -p 8080:80 automation-testground:1.2.0
 ```
 
 Then open http://localhost:8080 in your browser.
@@ -33,7 +33,7 @@ old image alongside the new one — your existing scripts will keep passing agai
 | Dynamic Content & Waits | `pages/dynamic-content.html` | Spinners, delayed content, a button that enables after a delay, show/hide toggle, progress bar |
 | Tables & Data | `pages/tables.html` | Sortable columns, search filtering, pagination |
 | Modals & Alerts | `pages/modals-alerts.html` | Native `alert`/`confirm`/`prompt`, a custom modal dialog, a hover tooltip |
-| Drag, Drop & Upload | `pages/drag-drop-upload.html` | HTML5 drag-and-drop between lists, file input, an embedded iframe |
+| Drag, Drop & Upload | `pages/drag-drop-upload.html` | HTML5 drag-and-drop between lists, a custom multi-select dropdown list box, file input, an embedded iframe |
 | Mocked Login Flow | `pages/login.html` + `pages/dashboard.html` | Login form, session persisted in `localStorage`, a protected page, logout |
 
 Login credentials for the mocked login flow: username `student`, password `practice123`.
