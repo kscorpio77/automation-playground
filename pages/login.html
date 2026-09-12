@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Automation Testground</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div id="site-nav-mount"></div>
+  </header>
+
+  <main class="page">
+    <h1 class="page__title" data-testid="page-title">Mocked Login Flow</h1>
+    <p class="page__description">
+      A login form backed by localStorage &mdash; there is no server. Use the credentials below.
+    </p>
+
+    <form class="card" id="login-form" data-testid="login-form" novalidate style="max-width: 360px;">
+      <h2 class="card__title">Sign in</h2>
+
+      <div class="field">
+        <label for="login-username">Username</label>
+        <input type="text" id="login-username" data-testid="input-login-username" />
+      </div>
+
+      <div class="field">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" data-testid="input-login-password" />
+      </div>
+
+      <button type="submit" class="btn" data-testid="button-login">Sign in</button>
+
+      <div class="alert alert--error" id="login-error" data-testid="login-error">Invalid username or password.</div>
+
+      <p class="credentials-hint">
+        Try username <code>student</code> and password <code>practice123</code>.
+      </p>
+    </form>
+  </main>
+
+  <div id="site-footer-mount"></div>
+
+  <script src="../js/nav.js"></script>
+  <script src="../js/login.js"></script>
+  <script>
+    renderSiteNav("../", "nav-login");
+    renderSiteFooter();
+  </script>
+</body>
+</html>

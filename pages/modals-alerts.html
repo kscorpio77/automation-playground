@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modals &amp; Alerts - Automation Testground</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div id="site-nav-mount"></div>
+  </header>
+
+  <main class="page">
+    <h1 class="page__title" data-testid="page-title">Modals &amp; Alerts</h1>
+    <p class="page__description">
+      Native browser dialogs, a custom in-page modal, and a hover tooltip.
+    </p>
+
+    <section class="card" data-testid="section-native-dialogs">
+      <h2 class="card__title">Native browser dialogs</h2>
+      <button class="btn" id="alert-button" data-testid="button-trigger-alert">Trigger alert()</button>
+      <button class="btn" id="confirm-button" data-testid="button-trigger-confirm">Trigger confirm()</button>
+      <button class="btn" id="prompt-button" data-testid="button-trigger-prompt">Trigger prompt()</button>
+      <p data-testid="native-dialog-result" id="native-dialog-result"></p>
+    </section>
+
+    <section class="card" data-testid="section-custom-modal">
+      <h2 class="card__title">Custom modal dialog</h2>
+      <button class="btn" id="open-modal-button" data-testid="button-open-modal">Open modal</button>
+      <p data-testid="modal-result" id="modal-result"></p>
+    </section>
+
+    <section class="card" data-testid="section-tooltip">
+      <h2 class="card__title">Tooltip</h2>
+      <p>
+        Hover over
+        <span class="tooltip-wrap" data-testid="tooltip-trigger">
+          this text
+          <span class="tooltip-bubble" data-testid="tooltip-bubble">I'm a tooltip</span>
+        </span>
+        to reveal a tooltip.
+      </p>
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="custom-modal-overlay" data-testid="custom-modal-overlay">
+    <div class="modal" data-testid="custom-modal">
+      <h3 class="modal__title">Confirm action</h3>
+      <p>Are you sure you want to continue?</p>
+      <div class="modal__actions">
+        <button class="btn btn--secondary" id="modal-cancel-button" data-testid="button-modal-cancel">Cancel</button>
+        <button class="btn" id="modal-confirm-button" data-testid="button-modal-confirm">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer-mount"></div>
+
+  <script src="../js/nav.js"></script>
+  <script src="../js/modals-alerts.js"></script>
+  <script>
+    renderSiteNav("../", "nav-modals-alerts");
+    renderSiteFooter();
+  </script>
+</body>
+</html>

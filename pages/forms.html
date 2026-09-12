@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forms &amp; Validation - Automation Testground</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div id="site-nav-mount"></div>
+  </header>
+
+  <main class="page">
+    <h1 class="page__title" data-testid="page-title">Forms &amp; Validation</h1>
+    <p class="page__description">
+      A registration form with client-side validation. Submitting with invalid data shows
+      field-level errors; valid data shows a success message. Nothing is sent anywhere.
+    </p>
+
+    <form class="card" id="registration-form" data-testid="registration-form" novalidate>
+      <h2 class="card__title">Create an account</h2>
+
+      <div class="field">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" data-testid="input-username" />
+        <div class="field-error" data-testid="error-username">Username must be at least 3 characters.</div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" data-testid="input-email" />
+        <div class="field-error" data-testid="error-email">Enter a valid email address.</div>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" data-testid="input-password" />
+        <div class="field-error" data-testid="error-password">Password must be at least 6 characters.</div>
+      </div>
+
+      <div class="field">
+        <label for="country">Country</label>
+        <select id="country" name="country" data-testid="select-country">
+          <option value="">Select a country</option>
+          <option value="in">India</option>
+          <option value="us">United States</option>
+          <option value="gb">United Kingdom</option>
+          <option value="de">Germany</option>
+          <option value="au">Australia</option>
+        </select>
+        <div class="field-error" data-testid="error-country">Please select a country.</div>
+      </div>
+
+      <div class="field">
+        <label>Interests</label>
+        <div class="checkbox-row">
+          <input type="checkbox" id="interest-selenium" name="interests" value="selenium" data-testid="checkbox-interest-selenium" />
+          <label for="interest-selenium">Selenium</label>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="interest-playwright" name="interests" value="playwright" data-testid="checkbox-interest-playwright" />
+          <label for="interest-playwright">Playwright</label>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="interest-cypress" name="interests" value="cypress" data-testid="checkbox-interest-cypress" />
+          <label for="interest-cypress">Cypress</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Experience level</label>
+        <div class="radio-row">
+          <input type="radio" id="level-beginner" name="level" value="beginner" data-testid="radio-level-beginner" />
+          <label for="level-beginner">Beginner</label>
+        </div>
+        <div class="radio-row">
+          <input type="radio" id="level-intermediate" name="level" value="intermediate" data-testid="radio-level-intermediate" />
+          <label for="level-intermediate">Intermediate</label>
+        </div>
+        <div class="radio-row">
+          <input type="radio" id="level-advanced" name="level" value="advanced" data-testid="radio-level-advanced" />
+          <label for="level-advanced">Advanced</label>
+        </div>
+        <div class="field-error" data-testid="error-level">Please select an experience level.</div>
+      </div>
+
+      <button type="submit" class="btn" data-testid="button-submit">Create account</button>
+      <button type="reset" class="btn btn--secondary" data-testid="button-reset">Reset</button>
+
+      <div class="alert alert--success" data-testid="form-success">Account created successfully.</div>
+    </form>
+  </main>
+
+  <div id="site-footer-mount"></div>
+
+  <script src="../js/nav.js"></script>
+  <script src="../js/forms.js"></script>
+  <script>
+    renderSiteNav("../", "nav-forms");
+    renderSiteFooter();
+  </script>
+</body>
+</html>

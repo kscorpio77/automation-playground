@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automation Testground</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div id="site-nav-mount"></div>
+  </header>
+
+  <main class="page">
+    <h1 class="page__title" data-testid="page-title">Automation Testground</h1>
+    <p class="page__description">
+      A small, static practice site for writing browser automation scripts (Selenium, Playwright,
+      Cypress, Puppeteer, etc). Every interactive element carries a stable
+      <code>data-testid</code> attribute that will not change within this major version, so
+      scripts you write against this version keep passing.
+    </p>
+
+    <div class="home-grid" data-testid="home-links">
+      <a href="pages/forms.html" data-testid="home-link-forms">
+        <div class="home-card">
+          <h2 class="home-card__title">Forms &amp; Validation</h2>
+          <p class="home-card__desc">Text fields, dropdowns, checkboxes, radios, client-side validation errors.</p>
+        </div>
+      </a>
+      <a href="pages/dynamic-content.html" data-testid="home-link-dynamic-content">
+        <div class="home-card">
+          <h2 class="home-card__title">Dynamic Content &amp; Waits</h2>
+          <p class="home-card__desc">Spinners, delayed elements, buttons that enable after a delay, progress bars.</p>
+        </div>
+      </a>
+      <a href="pages/tables.html" data-testid="home-link-tables">
+        <div class="home-card">
+          <h2 class="home-card__title">Tables &amp; Data</h2>
+          <p class="home-card__desc">Sortable columns, search filtering, pagination over a static dataset.</p>
+        </div>
+      </a>
+      <a href="pages/modals-alerts.html" data-testid="home-link-modals-alerts">
+        <div class="home-card">
+          <h2 class="home-card__title">Modals &amp; Alerts</h2>
+          <p class="home-card__desc">Native alert/confirm/prompt dialogs, a custom modal, and a hover tooltip.</p>
+        </div>
+      </a>
+      <a href="pages/drag-drop-upload.html" data-testid="home-link-drag-drop-upload">
+        <div class="home-card">
+          <h2 class="home-card__title">Drag, Drop &amp; Upload</h2>
+          <p class="home-card__desc">Drag-and-drop between lists, a file input, and an embedded iframe.</p>
+        </div>
+      </a>
+      <a href="pages/login.html" data-testid="home-link-login">
+        <div class="home-card">
+          <h2 class="home-card__title">Mocked Login Flow</h2>
+          <p class="home-card__desc">Login form, a protected dashboard page, and logout &mdash; state kept in localStorage.</p>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <div id="site-footer-mount"></div>
+
+  <script src="js/nav.js"></script>
+  <script>
+    renderSiteNav("", "nav-home");
+    renderSiteFooter();
+  </script>
+</body>
+</html>

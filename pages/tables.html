@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tables &amp; Data - Automation Testground</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div id="site-nav-mount"></div>
+  </header>
+
+  <main class="page">
+    <h1 class="page__title" data-testid="page-title">Tables &amp; Data</h1>
+    <p class="page__description">
+      A static dataset rendered as a sortable, searchable, paginated table.
+    </p>
+
+    <section class="card">
+      <div class="table-toolbar">
+        <input type="text" id="table-search" data-testid="table-search" placeholder="Search by name..." />
+        <span class="badge" id="table-result-count" data-testid="table-result-count">25 results</span>
+      </div>
+
+      <table class="data-table" data-testid="data-table">
+        <thead>
+          <tr>
+            <th data-testid="table-header-name" data-sort-key="name">Name <span class="sort-indicator"></span></th>
+            <th data-testid="table-header-role" data-sort-key="role">Role <span class="sort-indicator"></span></th>
+            <th data-testid="table-header-department" data-sort-key="department">Department <span class="sort-indicator"></span></th>
+            <th data-testid="table-header-experience" data-sort-key="experience">Experience (yrs) <span class="sort-indicator"></span></th>
+          </tr>
+        </thead>
+        <tbody id="table-body" data-testid="table-body"></tbody>
+      </table>
+
+      <div class="pagination" id="table-pagination" data-testid="table-pagination"></div>
+    </section>
+  </main>
+
+  <div id="site-footer-mount"></div>
+
+  <script src="../js/nav.js"></script>
+  <script src="../js/tables.js"></script>
+  <script>
+    renderSiteNav("../", "nav-tables");
+    renderSiteFooter();
+  </script>
+</body>
+</html>

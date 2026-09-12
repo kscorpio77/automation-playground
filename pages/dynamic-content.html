@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Content &amp; Waits - Automation Testground</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div id="site-nav-mount"></div>
+  </header>
+
+  <main class="page">
+    <h1 class="page__title" data-testid="page-title">Dynamic Content &amp; Waits</h1>
+    <p class="page__description">
+      Practice explicit waits: elements here appear, enable, or change only after a delay.
+    </p>
+
+    <section class="card" data-testid="section-loading">
+      <h2 class="card__title">Loading content</h2>
+      <button class="btn" id="start-loading" data-testid="button-start-loading">Load content</button>
+      <div style="margin-top: 12px;">
+        <span class="spinner hidden" id="loading-spinner" data-testid="loading-spinner"></span>
+        <div class="alert alert--success" id="loaded-content" data-testid="loaded-content">
+          Content finished loading after a 2 second delay.
+        </div>
+      </div>
+    </section>
+
+    <section class="card" data-testid="section-delayed-enable">
+      <h2 class="card__title">Button enabled after delay</h2>
+      <p>This button is disabled for 3 seconds after the page loads.</p>
+      <button class="btn" id="delayed-enable-button" data-testid="button-delayed-enable" disabled>
+        Now enabled
+      </button>
+    </section>
+
+    <section class="card" data-testid="section-toggle">
+      <h2 class="card__title">Show / hide panel</h2>
+      <button class="btn btn--secondary" id="toggle-panel-button" data-testid="button-toggle-panel">Toggle panel</button>
+      <div class="alert" id="toggle-panel" data-testid="toggle-panel" style="margin-top: 12px; background: var(--color-bg); display: none;">
+        This panel was hidden until you clicked the toggle button.
+      </div>
+    </section>
+
+    <section class="card" data-testid="section-progress">
+      <h2 class="card__title">Progress bar</h2>
+      <button class="btn" id="start-progress-button" data-testid="button-start-progress">Start progress</button>
+      <div style="margin-top: 12px;" class="progress-track">
+        <div class="progress-track__fill" id="progress-fill" data-testid="progress-fill"></div>
+      </div>
+      <p data-testid="progress-status" id="progress-status">0%</p>
+    </section>
+  </main>
+
+  <div id="site-footer-mount"></div>
+
+  <script src="../js/nav.js"></script>
+  <script src="../js/dynamic-content.js"></script>
+  <script>
+    renderSiteNav("../", "nav-dynamic-content");
+    renderSiteFooter();
+  </script>
+</body>
+</html>

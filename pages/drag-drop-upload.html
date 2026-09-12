@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drag, Drop &amp; Upload - Automation Testground</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div id="site-nav-mount"></div>
+  </header>
+
+  <main class="page">
+    <h1 class="page__title" data-testid="page-title">Drag, Drop &amp; Upload</h1>
+    <p class="page__description">
+      Drag items between lists, upload a file (nothing leaves your browser), and interact with
+      content inside an iframe.
+    </p>
+
+    <section class="card" data-testid="section-drag-drop">
+      <h2 class="card__title">Drag and drop</h2>
+      <div class="dnd-columns">
+        <div>
+          <div class="dnd-list__title">Available</div>
+          <ul class="dnd-list" id="dnd-source" data-testid="dnd-list-source"></ul>
+        </div>
+        <div>
+          <div class="dnd-list__title">Selected</div>
+          <ul class="dnd-list" id="dnd-target" data-testid="dnd-list-target"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" data-testid="section-file-upload">
+      <h2 class="card__title">File upload</h2>
+      <input type="file" id="file-input" data-testid="file-input" />
+      <div class="file-drop-result" id="file-upload-result" data-testid="file-upload-result"></div>
+    </section>
+
+    <section class="card" data-testid="section-iframe">
+      <h2 class="card__title">Embedded iframe</h2>
+      <iframe class="embedded-frame" src="iframe-content.html" data-testid="embedded-iframe" title="Embedded content"></iframe>
+    </section>
+  </main>
+
+  <div id="site-footer-mount"></div>
+
+  <script src="../js/nav.js"></script>
+  <script src="../js/drag-drop-upload.js"></script>
+  <script>
+    renderSiteNav("../", "nav-drag-drop-upload");
+    renderSiteFooter();
+  </script>
+</body>
+</html>

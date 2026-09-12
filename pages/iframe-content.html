@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Iframe content</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 12px;
+      font-size: 14px;
+    }
+    button {
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <p data-testid="iframe-content-text" id="iframe-text">This content lives inside an iframe.</p>
+  <button id="iframe-button" data-testid="iframe-button">Click me inside the iframe</button>
+
+  <script>
+    document.getElementById("iframe-button").addEventListener("click", function () {
+      document.getElementById("iframe-text").textContent = "Button inside the iframe was clicked.";
+    });
+  </script>
+</body>
+</html>
