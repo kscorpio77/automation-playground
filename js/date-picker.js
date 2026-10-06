@@ -42,10 +42,12 @@ function initDatePicker(rootId) {
 
   function openCalendar() {
     calendar.classList.add("is-open");
+    input.setAttribute("aria-expanded", "true");
   }
 
   function closeCalendar() {
     calendar.classList.remove("is-open");
+    input.setAttribute("aria-expanded", "false");
   }
 
   function render() {
@@ -69,6 +71,9 @@ function initDatePicker(rootId) {
       btn.className = "date-picker__day";
       btn.textContent = String(day);
       btn.setAttribute("data-testid", testIdPrefix + "-day-" + formatDate(cellDate));
+      btn.setAttribute("aria-label", formatDate(cellDate));
+      btn.setAttribute("role", "gridcell");
+      btn.setAttribute("aria-pressed", String(isSameDay(cellDate, selectedDate)));
       if (isSameDay(cellDate, today)) btn.classList.add("date-picker__day--today");
       if (selectedDate && isSameDay(cellDate, selectedDate)) btn.classList.add("date-picker__day--selected");
       btn.addEventListener("click", function () {

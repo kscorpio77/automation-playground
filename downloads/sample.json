@@ -1,0 +1,7 @@
+{
+  "playground": "Automation Playground",
+  "records": [
+    { "id": 101, "name": "Ava Thompson", "department": "Engineering" },
+    { "id": 102, "name": "Liam Chen", "department": "Engineering" }
+  ]
+}

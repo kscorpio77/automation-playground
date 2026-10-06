@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Broken Elements - Automation Playground</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header"><div id="site-nav-mount"></div></header>
+  <main class="page">
+    <span class="difficulty difficulty--intermediate">Intermediate · Training fixtures</span>
+    <h1 class="page__title" data-testid="page-title">Broken Elements</h1>
+    <p class="page__description">A controlled collection of deliberately unavailable resources and invalid-looking but valid input.</p>
+    <aside class="skills-callout"><strong>What can I automate here?</strong> Skills you can practise: identify broken links and images, distinguish a 404 fixture from a working resource, and validate input without relying on appearance alone.</aside>
+    <section class="card">
+      <h2 class="card__title">Intentional failure fixtures</h2>
+      <p class="notice">Every failure below is deliberate and labelled. It is not an application defect.</p>
+      <img src="../assets/image-intentionally-missing.svg" alt="Intentionally broken image fixture" data-testid="broken-fixture-image" />
+      <p><a href="missing-training-page.html" data-testid="broken-fixture-link">Intentionally broken page link</a></p>
+      <p><a href="../downloads/missing-training-file.txt" data-testid="broken-fixture-resource">Intentionally missing download resource</a></p>
+      <button class="btn" disabled data-testid="broken-fixture-disabled-button">Intentionally disabled</button>
+      <label class="field">Malformed-looking, valid text <input type="text" value="###-??" data-testid="broken-fixture-valid-input" /></label>
+      <p data-testid="broken-fixture-guidance">The unusual text is valid because this is an unrestricted text field.</p>
+    </section>
+    <p><a href="links-images.html">Open the regular Links &amp; Images exercises</a></p>
+    <div id="site-footer-mount"></div>
+  </main>
+  <script src="../js/nav.js"></script><script>renderSiteNav("../", "nav-advanced"); renderSiteFooter();</script>
+</body>
+</html>

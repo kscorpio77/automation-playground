@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Challenges - Automation Playground</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header"><div id="site-nav-mount"></div></header>
+  <main class="page">
+    <span class="difficulty difficulty--advanced">Advanced</span>
+    <h1 class="page__title" data-testid="page-title">Advanced Challenges</h1>
+    <p class="page__description">Intentionally tricky DOM, synchronization, scrolling, frames, Shadow DOM, and browser storage.</p>
+    <aside class="skills-callout"><strong>What can I automate here?</strong> Skills you can practise: robust locators, explicit waits, stale references, nested frames, open Shadow DOM, scrolling, storage, and network-free downloads.</aside>
+    <section class="card">
+      <h2 class="card__title">Dynamic elements and stale references</h2>
+      <p>Fragile ID: <code data-testid="dynamic-id-value">loading</code>. Its ID changes on each page load; the stable test id does not.</p>
+      <button class="btn" data-testid="button-insert-dynamic">Insert dynamic element</button>
+      <button class="btn btn--secondary" data-testid="button-change-dynamic-text">Change text and attribute</button>
+      <button class="btn btn--secondary" data-testid="button-remove-dynamic">Remove element</button>
+      <div class="dynamic-container" data-testid="dynamic-container"></div>
+      <p class="notice">Stale-element exercise: locate the card, click Refresh component, then locate it again. The original DOM node is deliberately replaced.</p>
+      <div class="stale-card" data-testid="stale-card"><span>Component version 1</span></div>
+      <button class="btn" data-testid="button-refresh-component">Refresh component (replace DOM node)</button>
+      <p data-testid="stale-component-status" aria-live="polite">Component ready.</p>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Predictable waits</h2>
+      <button class="btn" data-testid="button-wait-appear">Start 2-second appearance</button>
+      <p class="alert hidden" data-testid="wait-appears">Appeared after exactly 2 seconds.</p>
+      <button class="btn btn--secondary" data-testid="button-wait-disappear">Start 3-second disappearance</button>
+      <p data-testid="wait-disappears">This message disappears after 3 seconds.</p>
+      <button class="btn btn--secondary" data-testid="button-wait-text">Change text after 1 second</button>
+      <p data-testid="wait-changing-text">Original text</p>
+      <button class="btn btn--secondary" data-testid="button-skeleton-load">Load skeleton cards</button>
+      <div class="skeleton-grid hidden" data-testid="skeleton-loading" aria-label="Loading content"><span></span><span></span><span></span></div>
+      <div class="loaded-cards hidden" data-testid="skeleton-content">Three cards loaded after two seconds.</div>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Open Shadow DOM</h2>
+      <p>The button and input are created inside open shadow roots. Closed Shadow DOM is not used.</p>
+      <div data-testid="shadow-host"></div>
+      <div data-testid="nested-shadow-host"></div>
+      <p data-testid="shadow-result" aria-live="polite">Shadow root interaction result.</p>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Scrolling and bounded infinite list</h2>
+      <p>Scroll the list to its end to load ten more records. It stops deterministically at 30.</p>
+      <div class="scroll-panel" data-testid="scroll-panel" tabindex="0"><div data-testid="scroll-items"></div><p data-testid="scroll-count">10 records loaded</p></div>
+      <div class="horizontal-scroll" data-testid="horizontal-scroll"><span>Horizontal item 1</span><span>Horizontal item 2</span><span>Horizontal item 3</span><span>Horizontal item 4</span><span>Horizontal item 5</span></div>
+      <p class="below-fold" data-testid="below-fold-element">Initially below the viewport</p>
+      <button class="btn hidden" data-testid="button-back-to-top">Back to top</button>
+      <p class="scroll-reveal hidden" data-testid="scroll-reveal">This element appears after scrolling.</p>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Frames and windows</h2>
+      <iframe class="embedded-frame" src="frame-one.html" title="Frame level one" data-testid="frame-level-one"></iframe>
+      <iframe class="embedded-frame" src="iframe-content.html" title="Sibling frame" data-testid="frame-sibling"></iframe>
+      <p>The first frame contains another frame. Each level has a distinct heading and test id.</p>
+      <button class="btn" data-testid="button-open-child-window">Open child window</button>
+      <p data-testid="window-parent-id">Parent window: playground-parent</p>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Cookies and web storage</h2>
+      <label class="field">Preference <input data-testid="input-storage-preference" value="blue" /></label>
+      <button class="btn" data-storage-action="save" data-testid="button-storage-save">Save preference</button>
+      <button class="btn btn--secondary" data-storage-action="read" data-testid="button-storage-read">Read preference</button>
+      <button class="btn btn--secondary" data-storage-action="clear" data-testid="button-storage-clear">Clear preference</button>
+      <p data-testid="storage-result" aria-live="polite">Preference: not saved</p>
+      <p data-testid="cookie-result">Training cookie: not set</p>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Locator playground and challenging DOM</h2>
+      <p>Robust selector: <button class="btn" data-testid="locator-stable">Stable action</button>. Brittle examples: dynamic id, changing class, duplicated class names, similar text, and changing sibling order are deliberately included below.</p>
+      <div class="challenge-list" data-testid="challenging-dom">
+        <div class="challenge-row"><span>Record</span><button class="same-class" data-testid="challenge-first">Open</button><button class="same-class" data-testid="challenge-first-remove">Remove</button></div>
+        <div class="challenge-row"><span>Record</span><button class="same-class" data-testid="challenge-second">Open</button><button class="same-class" data-testid="challenge-second-remove">Remove</button></div>
+        <div class="challenge-row"><span>Record</span><button class="same-class" data-testid="challenge-third">Open</button><button class="same-class" data-testid="challenge-third-remove">Remove</button></div>
+      </div>
+      <p data-testid="broken-fixture-note">Broken links and missing images are intentional training fixtures on the Links &amp; Images and Broken Elements pages.</p>
+      <label class="field">Delayed search (special characters are treated as text)
+        <input type="search" data-testid="input-delayed-search" placeholder="Try a special character: [ or ?" />
+      </label>
+      <p data-testid="delayed-search-result" aria-live="polite">Type to search the local training records.</p>
+      <p><a href="locator-playground.html" data-testid="advanced-link-locators">Open the dedicated Locator Playground</a> · <a href="broken-elements.html" data-testid="advanced-link-broken">Open the Broken Elements training fixtures</a></p>
+    </section>
+    <div class="fixed-training-footer" data-testid="fixed-footer">Fixed footer · scroll position practice</div>
+    <div id="site-footer-mount"></div>
+  </main>
+  <script src="../js/nav.js"></script><script src="../js/playground.js"></script><script>renderSiteNav("../", "nav-advanced"); renderSiteFooter();</script>
+</body>
+</html>

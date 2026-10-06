@@ -11,7 +11,7 @@
       } catch (e) {}
     })();
   </script>
-  <title>Dynamic Content &amp; Waits - Automation Testground</title>
+  <title>Dynamic Content &amp; Waits - Automation Playground</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
@@ -21,16 +21,18 @@
   </header>
 
   <main class="page">
+    <span class="difficulty difficulty--intermediate">Intermediate</span>
     <h1 class="page__title" data-testid="page-title">Dynamic Content &amp; Waits</h1>
     <p class="page__description">
       Practice explicit waits: elements here appear, enable, or change only after a delay.
     </p>
+    <aside class="skills-callout"><strong>What can I automate here?</strong> Skills you can practise: explicit waits for appearance, disappearance, enabled state, spinner completion, text change, and progress completion.</aside>
 
     <section class="card" data-testid="section-loading">
       <h2 class="card__title">Loading content</h2>
       <button class="btn" id="start-loading" data-testid="button-start-loading">Load content</button>
       <div style="margin-top: 12px;">
-        <span class="spinner hidden" id="loading-spinner" data-testid="loading-spinner"></span>
+        <span class="spinner hidden" id="loading-spinner" data-testid="loading-spinner" role="status" aria-label="Loading"></span>
         <div class="alert alert--success" id="loaded-content" data-testid="loaded-content">
           Content finished loading after a 2 second delay.
         </div>
@@ -57,9 +59,14 @@
       <h2 class="card__title">Progress bar</h2>
       <button class="btn" id="start-progress-button" data-testid="button-start-progress">Start progress</button>
       <div style="margin-top: 12px;" class="progress-track">
-        <div class="progress-track__fill" id="progress-fill" data-testid="progress-fill"></div>
+        <div class="progress-track__fill" id="progress-fill" data-testid="progress-fill" role="progressbar" aria-label="Loading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
       </div>
       <p data-testid="progress-status" id="progress-status">0%</p>
+      <button class="btn btn--secondary" id="stop-progress-button" data-testid="button-stop-progress">Stop</button>
+      <button class="btn btn--secondary" id="reset-progress-button" data-testid="button-reset-progress">Reset</button>
+      <h3>Vertical progress</h3>
+      <div class="vertical-progress"><div data-testid="vertical-progress-fill"></div></div>
+      <p class="indeterminate-progress" data-testid="indeterminate-progress">Indeterminate loading state</p>
     </section>
 
     <div id="selector-ref-mount"></div>
@@ -85,8 +92,12 @@
       "toggle-panel",
       "section-progress",
       "button-start-progress",
+      "button-stop-progress",
+      "button-reset-progress",
       "progress-fill",
-      "progress-status"
+      "progress-status",
+      "vertical-progress-fill",
+      "indeterminate-progress"
     ]);
   </script>
 </body>

@@ -11,7 +11,7 @@
       } catch (e) {}
     })();
   </script>
-  <title>Tables &amp; Data - Automation Testground</title>
+  <title>Tables &amp; Data - Automation Playground</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
@@ -21,30 +21,52 @@
   </header>
 
   <main class="page">
+    <span class="difficulty difficulty--intermediate">Intermediate</span>
     <h1 class="page__title" data-testid="page-title">Tables &amp; Data</h1>
     <p class="page__description">
       A static dataset rendered as a sortable, searchable, paginated table.
     </p>
+    <aside class="skills-callout"><strong>What can I automate here?</strong> Skills you can practise: sort and search data, change page size, select rows, edit or remove records, and inspect merged table cells.</aside>
 
     <section class="card">
       <div class="table-toolbar">
-        <input type="text" id="table-search" data-testid="table-search" placeholder="Search by name..." />
+        <label>Search records <input type="search" id="table-search" data-testid="table-search" placeholder="Search all columns..." /></label>
+        <button type="button" class="btn btn--secondary" data-testid="button-clear-search">Clear search</button>
+        <label>Rows per page
+          <select data-testid="table-page-size"><option value="5">5</option><option value="10">10</option><option value="25">25</option><option value="50">50</option></select>
+        </label>
         <span class="badge" id="table-result-count" data-testid="table-result-count">25 results</span>
       </div>
+      <button class="btn btn--secondary" type="button" data-testid="button-add-table-row">Add sample row</button>
+      <span data-testid="table-selection-count" aria-live="polite">0 rows selected</span>
 
       <table class="data-table" data-testid="data-table">
         <thead>
           <tr>
-            <th data-testid="table-header-name" data-sort-key="name">Name <span class="sort-indicator"></span></th>
-            <th data-testid="table-header-role" data-sort-key="role">Role <span class="sort-indicator"></span></th>
-            <th data-testid="table-header-department" data-sort-key="department">Department <span class="sort-indicator"></span></th>
-            <th data-testid="table-header-experience" data-sort-key="experience">Experience (yrs) <span class="sort-indicator"></span></th>
+            <th scope="col">Select</th>
+            <th scope="col" tabindex="0" aria-sort="none" data-testid="table-header-name" data-sort-key="name">Name <span class="sort-indicator"></span></th>
+            <th scope="col" tabindex="0" aria-sort="none" data-testid="table-header-role" data-sort-key="role">Role <span class="sort-indicator"></span></th>
+            <th scope="col" tabindex="0" aria-sort="none" data-testid="table-header-department" data-sort-key="department">Department <span class="sort-indicator"></span></th>
+            <th scope="col" tabindex="0" aria-sort="none" data-testid="table-header-experience" data-sort-key="experience">Experience (yrs) <span class="sort-indicator"></span></th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody id="table-body" data-testid="table-body"></tbody>
       </table>
 
       <div class="pagination" id="table-pagination" data-testid="table-pagination"></div>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Merged cells and nested content</h2>
+      <table class="data-table" data-testid="complex-table">
+        <caption>Quarterly training schedule</caption>
+        <thead><tr><th scope="col">Quarter</th><th scope="col">Course</th><th scope="col">Trainer</th><th scope="col">Status</th></tr></thead>
+        <tbody>
+          <tr><th scope="rowgroup" rowspan="2">Q1</th><td>Locators</td><td><span>A. Trainer</span></td><td><button class="btn btn--secondary" data-testid="complex-cell-action">View</button></td></tr>
+          <tr><td>Waits</td><td><a href="dynamic-content.html">B. Trainer</a></td><td>Scheduled</td></tr>
+          <tr><th scope="row" colspan="2">Q2 — Advanced</th><td><span>Course team</span></td><td>Open</td></tr>
+        </tbody>
+      </table>
     </section>
 
     <div id="selector-ref-mount"></div>
@@ -60,6 +82,10 @@
     renderSiteFooter();
     renderSelectorReference("selector-ref-mount", [
       "table-search",
+      "button-clear-search",
+      "table-page-size",
+      "button-add-table-row",
+      "table-selection-count",
       "table-result-count",
       "data-table",
       "table-header-name",
@@ -74,8 +100,11 @@
       "cell-experience-{id}",
       "table-pagination",
       "pagination-prev",
+      "pagination-first",
+      "pagination-last",
       "pagination-page-{n}",
-      "pagination-next"
+      "pagination-next",
+      "complex-table"
     ], "{id} is the row's numeric id (1-25); {n} is a 1-based page number.");
   </script>
 </body>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactions - Automation Playground</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header"><div id="site-nav-mount"></div></header>
+  <main class="page">
+    <span class="difficulty difficulty--intermediate">Intermediate</span>
+    <h1 class="page__title" data-testid="page-title">Interactions &amp; Components</h1>
+    <p class="page__description">Mouse and keyboard actions, accessible widgets, temporary notifications, downloads, and browser tabs.</p>
+    <aside class="skills-callout"><strong>What can I automate here?</strong> Skills you can practise: hover, mouse enter/leave, keyboard events, clipboard feedback, accessible tabs, accordions, menus, toasts, and new windows.</aside>
+    <section class="card">
+      <h2 class="card__title">Mouse actions and tooltips</h2>
+      <button class="btn" data-testid="mouse-click">Single click</button>
+      <button class="btn btn--secondary" data-testid="mouse-double-click">Double-click</button>
+      <button class="btn btn--secondary" data-testid="mouse-context">Right-click</button>
+      <span class="hover-target" data-testid="mouse-hover">Hover over me <span role="tooltip">CSS hover tooltip</span></span>
+      <span class="tooltip-custom" tabindex="0" data-testid="tooltip-js-trigger">Custom delayed tooltip <span role="tooltip" class="hidden" data-testid="tooltip-js-message">Revealed by JavaScript after a short wait</span></span>
+      <p data-testid="mouse-result" aria-live="polite">Perform an action.</p>
+      <div class="context-menu hidden" role="menu" data-testid="context-menu"><button role="menuitem" data-testid="context-menu-item">Context action</button></div>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Reordering and Kanban drag-and-drop</h2>
+      <p>Move draggable tasks between columns or reorder a list. Dropping on the red target is intentionally rejected.</p>
+      <ul class="reorder-list" data-testid="reorder-list">
+        <li draggable="true" data-drag-item="task-a" data-testid="reorder-task-a">Task A</li>
+        <li draggable="true" data-drag-item="task-b" data-testid="reorder-task-b">Task B</li>
+        <li draggable="true" data-drag-item="task-c" data-testid="reorder-task-c">Task C</li>
+      </ul>
+      <div class="kanban-columns">
+        <section><h3>To do</h3><ul class="kanban-column" data-drop-zone="todo" data-testid="kanban-todo"><li draggable="true" data-drag-item="bug-1" data-testid="kanban-card-bug-1">Fix login label</li></ul></section>
+        <section><h3>In progress</h3><ul class="kanban-column" data-drop-zone="progress" data-testid="kanban-progress"></ul></section>
+        <section><h3>Done</h3><ul class="kanban-column" data-drop-zone="done" data-testid="kanban-done"></ul></section>
+      </div>
+      <div class="invalid-drop-target" data-drop-zone="invalid" data-testid="drop-target-invalid">Invalid drop target</div>
+      <p data-testid="drag-result" aria-live="polite">Drop a task to see the result.</p>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Keyboard events</h2>
+      <label class="field">Press Enter, Tab, Escape, Space, or arrow keys
+        <input data-testid="keyboard-input" aria-describedby="keyboard-result" placeholder="Focus and use your keyboard" />
+      </label>
+      <p id="keyboard-result" data-testid="keyboard-result" aria-live="polite">Last key: none</p>
+      <label class="field">Clipboard source <input value="Copy this training text" data-testid="clipboard-source" /></label>
+      <button class="btn" data-testid="button-copy-clipboard">Copy to clipboard</button>
+      <label class="field">Paste target <input data-testid="clipboard-target" placeholder="Paste here with Ctrl/Cmd+V" /></label>
+      <p data-testid="clipboard-result" aria-live="polite">Clipboard status appears here.</p>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Accessible tabs</h2>
+      <div role="tablist" aria-label="Profile sections" class="tab-list">
+        <button role="tab" id="tab-personal" aria-controls="panel-personal" aria-selected="true" data-testid="tab-personal">Personal Details</button>
+        <button role="tab" id="tab-address" aria-controls="panel-address" aria-selected="false" data-testid="tab-address" tabindex="-1">Address</button>
+        <button role="tab" id="tab-employment" aria-controls="panel-employment" aria-selected="false" data-testid="tab-employment" tabindex="-1">Employment</button>
+        <button role="tab" id="tab-settings" aria-controls="panel-settings" aria-selected="false" data-testid="tab-settings" tabindex="-1">Settings</button>
+      </div>
+      <div id="panel-personal" role="tabpanel" aria-labelledby="tab-personal" data-testid="panel-personal">Personal details panel is active.</div>
+      <div id="panel-address" role="tabpanel" aria-labelledby="tab-address" data-testid="panel-address" hidden>Address panel is active.</div>
+      <div id="panel-employment" role="tabpanel" aria-labelledby="tab-employment" data-testid="panel-employment" hidden>Employment panel is active.</div>
+      <div id="panel-settings" role="tabpanel" aria-labelledby="tab-settings" data-testid="panel-settings" hidden>Settings panel is active.</div>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Accordion and menu</h2>
+      <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-one" data-testid="accordion-trigger-one">What is an explicit wait?</button>
+      <div id="accordion-panel-one" data-testid="accordion-panel-one" hidden>An explicit wait synchronizes with a specific condition on the page.</div>
+      <button class="accordion-trigger" aria-expanded="false" aria-controls="accordion-panel-two" data-testid="accordion-trigger-two">Why use accessible names?</button>
+      <div id="accordion-panel-two" data-testid="accordion-panel-two" hidden>Accessible names make controls easier to use and locate.</div>
+      <details class="menu-disclosure"><summary data-testid="menu-dropdown-trigger">Open menu</summary>
+        <div class="menu-options" role="menu"><a role="menuitem" href="elements.html" data-testid="menu-elements">Elements</a><a role="menuitem" href="tables.html" data-testid="menu-tables">Tables</a>
+          <details><summary data-testid="menu-submenu-trigger">More exercises</summary><a role="menuitem" href="advanced.html" data-testid="menu-advanced">Advanced challenges</a></details>
+        </div>
+      </details>
+      <button class="btn btn--secondary mobile-menu-toggle" aria-expanded="false" aria-controls="responsive-menu" data-testid="button-mobile-menu">Toggle responsive menu</button>
+      <nav id="responsive-menu" class="responsive-menu" data-testid="responsive-menu"><a href="elements.html">Elements</a><a href="workflows.html">Workflows</a></nav>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Notifications</h2>
+      <button class="btn" data-toast="success" data-testid="button-toast-success">Success toast</button>
+      <button class="btn btn--secondary" data-toast="warning" data-testid="button-toast-warning">Warning toast</button>
+      <button class="btn btn--secondary" data-toast="error" data-testid="button-toast-error">Error toast</button>
+      <button class="btn btn--secondary" data-toast="info" data-testid="button-toast-info">Information toast</button>
+      <div class="toast-region" aria-live="polite" aria-atomic="true" data-testid="toast-region"><div class="toast hidden" data-testid="toast-message"></div></div>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Windows, downloads, and upload</h2>
+      <button class="btn" data-testid="button-open-tab">Open new tab</button>
+      <button class="btn btn--secondary" data-testid="button-open-window">Open new window</button>
+      <button class="btn btn--secondary" data-testid="button-open-multiple-tabs">Open three tabs</button>
+      <button class="btn btn--secondary" data-testid="button-download-delayed" disabled>Download button enabled after 2 seconds</button>
+      <button class="btn btn--secondary hidden" data-testid="button-download-appears">Download button appeared after 2 seconds</button>
+      <p><a href="../downloads/sample.txt" download data-testid="download-text">TXT</a> · <a href="../downloads/sample.csv" download data-testid="download-csv">CSV</a> · <a href="../downloads/sample.json" download data-testid="download-json">JSON</a> · <a href="../downloads/sample.html" download data-testid="download-html">HTML sample</a></p>
+      <button class="btn" data-testid="button-download-generated">Generate download</button>
+      <p data-testid="download-result" aria-live="polite"></p>
+    </section>
+    <div id="site-footer-mount"></div>
+  </main>
+  <script src="../js/nav.js"></script><script src="../js/playground.js"></script><script>renderSiteNav("../", "nav-interactions"); renderSiteFooter();</script>
+</body>
+</html>

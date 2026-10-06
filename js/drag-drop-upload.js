@@ -63,15 +63,57 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var fileInput = document.getElementById("file-input");
   var fileResult = document.getElementById("file-upload-result");
+  var dropZone = document.querySelector('[data-testid="file-drop-zone"]');
   if (fileInput) {
-    fileInput.addEventListener("change", function () {
-      if (fileInput.files && fileInput.files.length > 0) {
-        var file = fileInput.files[0];
-        fileResult.textContent =
-          "Selected: " + file.name + " (" + file.size + " bytes). File is not uploaded anywhere.";
-      } else {
-        fileResult.textContent = "";
+    function showFiles(files) {
+      var invalid = Array.from(files).find(function (file) {
+        var allowed = /\.(txt|csv|json|png|jpe?g|pdf)$/i.test(file.name);
+        return !allowed || file.size > 1024 * 1024;
+      });
+      if (invalid) {
+        fileResult.textContent = "Rejected " + invalid.name + ": choose a supported type no larger than 1 MB.";
+        fileInput.value = "";
+        return;
       }
-    });
+      fileResult.replaceChildren();
+      Array.from(files).forEach(function (file, index) {
+        var row = document.createElement("div");
+        row.className = "uploaded-file";
+        var name = document.createElement("span");
+        name.textContent = file.name + " (" + file.size + " bytes)";
+        var remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "btn btn--secondary";
+        remove.textContent = "Remove";
+        remove.setAttribute("data-testid", "button-remove-upload-" + (index + 1));
+        remove.addEventListener("click", function () {
+          fileInput.value = "";
+          fileResult.replaceChildren();
+        });
+        row.append(name, remove);
+        fileResult.appendChild(row);
+      });
+      if (files.length) {
+        var note = document.createElement("p");
+        note.textContent = "Selected locally; no upload request was sent.";
+        fileResult.appendChild(note);
+      }
+    }
+    fileInput.addEventListener("change", function () { showFiles(fileInput.files || []); });
+    if (dropZone) {
+      ["dragenter", "dragover"].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, function (event) {
+          event.preventDefault();
+          dropZone.classList.add("is-drag-over");
+        });
+      });
+      ["dragleave", "drop"].forEach(function (eventName) {
+        dropZone.addEventListener(eventName, function (event) {
+          event.preventDefault();
+          dropZone.classList.remove("is-drag-over");
+        });
+      });
+      dropZone.addEventListener("drop", function (event) { showFiles(event.dataTransfer.files); });
+    }
   }
 });

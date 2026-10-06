@@ -1,16 +1,21 @@
 // Shared site chrome: top navigation and footer.
 // data-testid values here are part of the stable contract for this major version.
 
-var APP_VERSION = "1.2.0";
-var REPO_URL = "https://github.com/developerpreetiverma/automation-testground";
+var APP_VERSION = "1.3.0";
+var REPO_URL = "https://github.com/kscorpio77/automation-playground";
 
 var NAV_LINKS = [
   { href: "index.html", label: "Home", testId: "nav-home" },
+  { href: "pages/elements.html", label: "Elements", testId: "nav-elements" },
   { href: "pages/forms.html", label: "Forms", testId: "nav-forms" },
-  { href: "pages/dynamic-content.html", label: "Dynamic Content", testId: "nav-dynamic-content" },
   { href: "pages/tables.html", label: "Tables", testId: "nav-tables" },
+  { href: "pages/links-images.html", label: "Links & Images", testId: "nav-links-images" },
+  { href: "pages/interactions.html", label: "Interactions", testId: "nav-interactions" },
+  { href: "pages/dynamic-content.html", label: "Waits", testId: "nav-dynamic-content" },
+  { href: "pages/advanced.html", label: "Advanced", testId: "nav-advanced" },
   { href: "pages/modals-alerts.html", label: "Modals & Alerts", testId: "nav-modals-alerts" },
   { href: "pages/drag-drop-upload.html", label: "Drag, Drop & Upload", testId: "nav-drag-drop-upload" },
+  { href: "pages/workflows.html", label: "Workflows", testId: "nav-workflows" },
   { href: "pages/login.html", label: "Login", testId: "nav-login" }
 ];
 
@@ -55,16 +60,25 @@ function toggleTheme() {
 function renderSiteNav(basePath, activeTestId) {
   var mount = document.getElementById("site-nav-mount");
   if (!mount) return;
+  try {
+    var savedTheme = localStorage.getItem("testground_theme");
+    if (savedTheme === "light" || savedTheme === "dark") {
+      document.documentElement.setAttribute("data-theme", savedTheme);
+    }
+  } catch (error) {
+    // The site remains usable when browser storage is disabled.
+  }
 
   var nav = document.createElement("nav");
   nav.className = "site-nav";
   nav.setAttribute("data-testid", "site-nav");
+  nav.setAttribute("aria-label", "Primary navigation");
 
   var brand = document.createElement("a");
   brand.className = "site-nav__brand";
   brand.href = basePath + "index.html";
   brand.setAttribute("data-testid", "nav-brand");
-  brand.innerHTML = '<span class="site-nav__brand-icon">' + BRAND_ICON_SVG + "</span><span>Automation Testground</span>";
+  brand.innerHTML = '<span class="site-nav__brand-icon">' + BRAND_ICON_SVG + "</span><span>Automation Playground</span>";
   nav.appendChild(brand);
 
   var linksWrap = document.createElement("div");
@@ -75,6 +89,7 @@ function renderSiteNav(basePath, activeTestId) {
     a.className = "site-nav__link";
     if (link.testId === activeTestId) {
       a.className += " is-active";
+      a.setAttribute("aria-current", "page");
     }
     a.href = basePath + link.href;
     a.textContent = link.label;
@@ -125,7 +140,7 @@ function renderSiteFooter() {
     GITHUB_ICON_SVG +
     " Source on GitHub</a>" +
     "</div>" +
-    'Automation Testground &mdash; version <span data-testid="app-version">' +
+    'Automation Playground &mdash; version <span data-testid="app-version">' +
     APP_VERSION +
     "</span>. DOM structure and data-testid attributes are stable within this version.";
   mount.appendChild(footer);

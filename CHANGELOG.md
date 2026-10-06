@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.3.0 - 2026-10-06
+
+Additive release. Existing 1.x `data-testid` selectors and exercise pages are retained.
+
+- Added categorized beginner, intermediate, advanced, and end-to-end navigation and guidance.
+- Added input/button/control, links/images, keyboard/mouse, accessible widget, download, and mock workflow exercises.
+- Added predictable dynamic DOM, stale-node, Shadow DOM, nested iframe, bounded scrolling, storage, and delayed-search exercises.
+- Expanded registration validation, table selection/editing/page size, file validation, and progress controls.
+- Added local sample download files and documented more than 50 framework-neutral practice exercises.
+- Updated repository links and quick-start commands to `kscorpio77/automation-playground`.
+
 ## 1.2.0 - 2026-09-12
 
 Additive release, no breaking changes to earlier selectors:

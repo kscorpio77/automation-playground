@@ -35,21 +35,48 @@ document.addEventListener("DOMContentLoaded", function () {
   var startProgressButton = document.getElementById("start-progress-button");
   var progressFill = document.getElementById("progress-fill");
   var progressStatus = document.getElementById("progress-status");
+  var stopProgressButton = document.getElementById("stop-progress-button");
+  var resetProgressButton = document.getElementById("reset-progress-button");
+  var verticalProgressFill = document.querySelector('[data-testid="vertical-progress-fill"]');
+  var progressInterval = null;
   if (startProgressButton) {
     startProgressButton.addEventListener("click", function () {
+      window.clearInterval(progressInterval);
       startProgressButton.disabled = true;
       var pct = 0;
       progressFill.style.width = "0%";
       progressStatus.textContent = "0%";
-      var interval = setInterval(function () {
+      progressFill.setAttribute("aria-valuenow", "0");
+      if (verticalProgressFill) verticalProgressFill.style.height = "0%";
+      progressInterval = setInterval(function () {
         pct += 10;
         progressFill.style.width = pct + "%";
         progressStatus.textContent = pct + "%";
+        progressFill.setAttribute("aria-valuenow", String(pct));
+        if (verticalProgressFill) verticalProgressFill.style.height = pct + "%";
         if (pct >= 100) {
-          clearInterval(interval);
+          clearInterval(progressInterval);
+          progressInterval = null;
           startProgressButton.disabled = false;
         }
       }, 300);
     });
   }
+  if (stopProgressButton) stopProgressButton.addEventListener("click", function () {
+    if (progressInterval !== null) {
+      clearInterval(progressInterval);
+      progressInterval = null;
+      startProgressButton.disabled = false;
+      progressStatus.textContent = "Stopped at " + progressFill.getAttribute("aria-valuenow") + "%";
+    }
+  });
+  if (resetProgressButton) resetProgressButton.addEventListener("click", function () {
+    clearInterval(progressInterval);
+    progressInterval = null;
+    startProgressButton.disabled = false;
+    progressFill.style.width = "0%";
+    progressFill.setAttribute("aria-valuenow", "0");
+    if (verticalProgressFill) verticalProgressFill.style.height = "0%";
+    progressStatus.textContent = "0%";
+  });
 });

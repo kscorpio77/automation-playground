@@ -11,7 +11,7 @@
       } catch (e) {}
     })();
   </script>
-  <title>Forms &amp; Validation - Automation Testground</title>
+  <title>Forms &amp; Validation - Automation Playground</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
@@ -21,15 +21,29 @@
   </header>
 
   <main class="page">
+    <span class="difficulty difficulty--beginner">Beginner</span>
     <h1 class="page__title" data-testid="page-title">Forms &amp; Validation</h1>
     <p class="page__description">
       A registration form with client-side validation. Submitting with invalid data shows
       field-level errors; valid data shows a success message. Nothing is sent anywhere.
     </p>
+    <aside class="skills-callout"><strong>What can I automate here?</strong> Skills you can practise: labels, text entry, native and custom date pickers, dependent dropdowns, validation errors, and deterministic form confirmation.</aside>
 
     <form class="card" id="registration-form" data-testid="registration-form" novalidate>
       <h2 class="card__title">Create an account</h2>
 
+      <div class="form-grid">
+        <div class="field">
+          <label for="first-name">First name</label>
+          <input type="text" id="first-name" name="firstName" data-testid="input-first-name" />
+          <div class="field-error" data-testid="error-first-name">Enter a valid first name.</div>
+        </div>
+        <div class="field">
+          <label for="last-name">Last name</label>
+          <input type="text" id="last-name" name="lastName" data-testid="input-last-name" />
+          <div class="field-error" data-testid="error-last-name">Enter a valid last name.</div>
+        </div>
+      </div>
       <div class="field">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" data-testid="input-username" />
@@ -49,6 +63,23 @@
       </div>
 
       <div class="field">
+        <label for="confirm-password">Confirm password</label>
+        <input type="password" id="confirm-password" name="confirmPassword" data-testid="input-confirm-password" />
+        <div class="field-error" data-testid="error-confirm-password">Passwords must match.</div>
+      </div>
+      <div class="form-grid">
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="+1 555 0100" data-testid="input-phone" />
+          <div class="field-error" data-testid="error-phone">Enter at least 7 digits.</div>
+        </div>
+        <div class="field">
+          <label for="date-of-birth">Date of birth</label>
+          <input type="date" id="date-of-birth" name="dateOfBirth" data-testid="input-registration-dob" />
+          <div class="field-error" data-testid="error-date-of-birth">Enter a valid past date.</div>
+        </div>
+      </div>
+      <div class="field">
         <label for="country">Country</label>
         <select id="country" name="country" data-testid="select-country">
           <option value="">Select a country</option>
@@ -60,9 +91,21 @@
         </select>
         <div class="field-error" data-testid="error-country">Please select a country.</div>
       </div>
+      <div class="form-grid">
+        <div class="field">
+          <label for="state">State / region</label>
+          <select id="state" name="state" data-testid="select-state" disabled><option value="">Select a country first</option></select>
+          <div class="field-error" data-testid="error-state">Please select a state or region.</div>
+        </div>
+        <div class="field">
+          <label for="city">City</label>
+          <select id="city" name="city" data-testid="select-city" disabled><option value="">Select a state first</option></select>
+          <div class="field-error" data-testid="error-city">Please select a city.</div>
+        </div>
+      </div>
 
       <div class="field">
-        <label>Interests</label>
+        <span class="field-label">Skills</span>
         <div class="checkbox-row">
           <input type="checkbox" id="interest-selenium" name="interests" value="selenium" data-testid="checkbox-interest-selenium" />
           <label for="interest-selenium">Selenium</label>
@@ -78,7 +121,14 @@
       </div>
 
       <div class="field">
-        <label>Experience level</label>
+        <span class="field-label">Gender</span>
+        <div class="radio-row"><input type="radio" id="gender-female" name="gender" value="Female" data-testid="radio-gender-female" /><label for="gender-female">Female</label></div>
+        <div class="radio-row"><input type="radio" id="gender-male" name="gender" value="Male" data-testid="radio-gender-male" /><label for="gender-male">Male</label></div>
+        <div class="radio-row"><input type="radio" id="gender-other" name="gender" value="Other" data-testid="radio-gender-other" /><label for="gender-other">Other</label></div>
+        <div class="field-error" data-testid="error-gender">Please select a gender option.</div>
+      </div>
+      <div class="field">
+        <span class="field-label">Experience level</span>
         <div class="radio-row">
           <input type="radio" id="level-beginner" name="level" value="beginner" data-testid="radio-level-beginner" />
           <label for="level-beginner">Beginner</label>
@@ -93,11 +143,20 @@
         </div>
         <div class="field-error" data-testid="error-level">Please select an experience level.</div>
       </div>
+      <div class="field">
+        <label for="profile-picture">Profile picture (PNG/JPEG, max 1 MB)</label>
+        <input type="file" id="profile-picture" name="profilePicture" accept="image/png,image/jpeg" data-testid="input-profile-picture" />
+        <div class="field-error" data-testid="error-profile-picture">Choose a PNG or JPEG file no larger than 1 MB.</div>
+      </div>
+      <label class="checkbox-row"><input type="checkbox" name="newsletter" data-testid="checkbox-newsletter" /> Subscribe to the newsletter (optional)</label>
+      <label class="checkbox-row"><input type="checkbox" name="terms" data-testid="checkbox-terms" /> I accept the training terms (required)</label>
+      <div class="field-error" data-testid="error-terms">Please accept the terms.</div>
+      <label class="field">Comments <textarea name="comments" rows="3" data-testid="input-comments" placeholder="Optional comments"></textarea></label>
 
       <button type="submit" class="btn" data-testid="button-submit">Create account</button>
       <button type="reset" class="btn btn--secondary" data-testid="button-reset">Reset</button>
 
-      <div class="alert alert--success" data-testid="form-success">Account created successfully.</div>
+      <div class="alert alert--success" data-testid="form-success" role="status">Account created successfully.<pre data-testid="form-summary"></pre></div>
     </form>
 
     <section class="card" data-testid="section-date-picker">
@@ -114,6 +173,9 @@
             class="date-picker__input"
             data-role="input"
             data-testid="date-picker-input"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls="date-picker-calendar"
             placeholder="Select a date"
             readonly
           />
@@ -122,7 +184,7 @@
           </span>
         </div>
 
-        <div class="date-picker__calendar" data-role="calendar" data-testid="date-picker-calendar">
+        <div class="date-picker__calendar" id="date-picker-calendar" data-role="calendar" data-testid="date-picker-calendar" role="dialog" aria-label="Choose a date">
           <div class="date-picker__header">
             <button type="button" class="date-picker__nav-btn" data-role="prev" data-testid="button-date-picker-prev-month" aria-label="Previous month">&lsaquo;</button>
             <span class="date-picker__month-label" data-role="month-label" data-testid="date-picker-month-label"></span>
@@ -137,7 +199,7 @@
             <span class="date-picker__weekday">Fr</span>
             <span class="date-picker__weekday">Sa</span>
           </div>
-          <div class="date-picker__days" data-role="days-grid"></div>
+          <div class="date-picker__days" data-role="days-grid" role="grid"></div>
           <div class="date-picker__footer">
             <button type="button" data-role="today" data-testid="button-date-picker-today">Today</button>
             <button type="button" data-role="clear" data-testid="button-date-picker-clear">Clear</button>
@@ -161,14 +223,28 @@
     initDatePicker("date-picker");
     renderSelectorReference("selector-ref-mount", [
       "registration-form",
+      "input-first-name",
+      "error-first-name",
+      "input-last-name",
+      "error-last-name",
       "input-username",
       "error-username",
       "input-email",
       "error-email",
       "input-password",
       "error-password",
+      "input-confirm-password",
+      "error-confirm-password",
+      "input-phone",
+      "error-phone",
+      "input-registration-dob",
+      "error-date-of-birth",
       "select-country",
       "error-country",
+      "select-state",
+      "error-state",
+      "select-city",
+      "error-city",
       "checkbox-interest-selenium",
       "checkbox-interest-playwright",
       "checkbox-interest-cypress",
@@ -176,9 +252,20 @@
       "radio-level-intermediate",
       "radio-level-advanced",
       "error-level",
+      "radio-gender-female",
+      "radio-gender-male",
+      "radio-gender-other",
+      "error-gender",
+      "input-profile-picture",
+      "error-profile-picture",
+      "checkbox-newsletter",
+      "checkbox-terms",
+      "error-terms",
+      "input-comments",
       "button-submit",
       "button-reset",
       "form-success",
+      "form-summary",
       "section-date-picker",
       "date-picker-input",
       "date-picker-calendar",

@@ -11,7 +11,7 @@
       } catch (e) {}
     })();
   </script>
-  <title>Modals &amp; Alerts - Automation Testground</title>
+  <title>Modals &amp; Alerts - Automation Playground</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
@@ -21,10 +21,12 @@
   </header>
 
   <main class="page">
+    <span class="difficulty difficulty--intermediate">Intermediate</span>
     <h1 class="page__title" data-testid="page-title">Modals &amp; Alerts</h1>
     <p class="page__description">
       Native browser dialogs, a custom in-page modal, and a hover tooltip.
     </p>
+    <aside class="skills-callout"><strong>What can I automate here?</strong> Skills you can practise: browser-native alert, confirm and prompt handling, accessible dialogs, modal confirmation, and tooltip visibility.</aside>
 
     <section class="card" data-testid="section-native-dialogs">
       <h2 class="card__title">Native browser dialogs</h2>
@@ -37,6 +39,7 @@
     <section class="card" data-testid="section-custom-modal">
       <h2 class="card__title">Custom modal dialog</h2>
       <button class="btn" id="open-modal-button" data-testid="button-open-modal">Open modal</button>
+      <button class="btn btn--secondary" data-testid="button-open-warning-modal">Open warning modal after delay</button>
       <p data-testid="modal-result" id="modal-result"></p>
     </section>
 
@@ -56,12 +59,20 @@
   </main>
 
   <div class="modal-overlay" id="custom-modal-overlay" data-testid="custom-modal-overlay">
-    <div class="modal" data-testid="custom-modal">
-      <h3 class="modal__title">Confirm action</h3>
+    <div class="modal" data-testid="custom-modal" role="dialog" aria-modal="true" aria-labelledby="custom-modal-title">
+      <h3 class="modal__title" id="custom-modal-title">Confirm action</h3>
       <p>Are you sure you want to continue?</p>
+      <button class="btn btn--secondary" data-testid="button-open-nested-modal">Open nested dialog</button>
       <div class="modal__actions">
         <button class="btn btn--secondary" id="modal-cancel-button" data-testid="button-modal-cancel">Cancel</button>
         <button class="btn" id="modal-confirm-button" data-testid="button-modal-confirm">Confirm</button>
+      </div>
+      <div class="modal-overlay nested-modal-overlay" data-testid="nested-modal-overlay">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="nested-modal-title">
+          <h3 class="modal__title" id="nested-modal-title">Nested dialog</h3>
+          <p>This second dialog is layered above the confirmation dialog.</p>
+          <button class="btn" data-testid="button-close-nested-modal">Close nested dialog</button>
+        </div>
       </div>
     </div>
   </div>
@@ -82,11 +93,15 @@
       "native-dialog-result",
       "section-custom-modal",
       "button-open-modal",
+      "button-open-warning-modal",
       "modal-result",
       "custom-modal-overlay",
       "custom-modal",
+      "button-open-nested-modal",
       "button-modal-cancel",
       "button-modal-confirm",
+      "nested-modal-overlay",
+      "button-close-nested-modal",
       "section-tooltip",
       "tooltip-trigger",
       "tooltip-bubble"

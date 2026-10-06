@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>End-to-End Workflows - Automation Playground</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header"><div id="site-nav-mount"></div></header>
+  <main class="page">
+    <span class="difficulty difficulty--intermediate">Intermediate · End-to-End</span>
+    <h1 class="page__title" data-testid="page-title">Mock Business Workflows</h1>
+    <p class="page__description">Practice realistic user journeys with deterministic in-browser data. Nothing is sent to a server.</p>
+    <aside class="skills-callout"><strong>What can I automate here?</strong> Skills you can practise: search, filtering, CRUD forms, confirmation dialogs, cart quantities, checkout validation, and order confirmation.</aside>
+    <section class="card">
+      <h2 class="card__title">Employee management</h2>
+      <div class="table-toolbar"><label>Search employees <input data-testid="employee-search" type="search" /></label><label>Department <select data-testid="employee-department-filter"><option value="">All departments</option><option>Engineering</option><option>Product</option><option>Design</option><option>Support</option></select></label></div>
+      <form class="inline-form" data-testid="employee-form">
+        <label class="field">Name <input required data-testid="employee-name" /></label>
+        <label class="field">Role <input required data-testid="employee-role" /></label>
+        <label class="field">Department <select data-testid="employee-department"><option>Engineering</option><option>Product</option><option>Design</option><option>Support</option></select></label>
+        <button class="btn" type="submit" data-testid="button-save-employee">Add employee</button>
+        <button class="btn btn--secondary" type="button" data-testid="button-cancel-edit" hidden>Cancel edit</button>
+      </form>
+      <p data-testid="employee-status" aria-live="polite">Showing starter employees.</p>
+      <div class="table-scroll"><table class="data-table" data-testid="table-employees"><thead><tr><th>ID</th><th>Name</th><th>Role</th><th>Department</th><th>Actions</th></tr></thead><tbody data-testid="employee-rows"></tbody></table></div>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Shopping journey</h2>
+      <div class="table-toolbar"><label>Search products <input type="search" data-testid="product-search" placeholder="Search products" /></label><label>Category <select data-testid="product-category"><option value="">All categories</option><option>Accessories</option><option>Books</option><option>Training</option></select></label></div>
+      <div class="product-grid" data-testid="product-list"></div>
+      <p data-testid="product-details" aria-live="polite">Select a product to see details.</p>
+      <section class="cart-panel" aria-label="Shopping cart">
+        <h3>Your cart (<span data-testid="cart-count">0</span>)</h3>
+        <div data-testid="cart-items"></div>
+        <p>Subtotal: <strong data-testid="cart-total">$0.00</strong></p>
+      </section>
+      <form class="checkout-form" data-testid="checkout-form">
+        <h3>Checkout (mock only)</h3>
+        <label class="field">Name <input required data-testid="checkout-name" /></label>
+        <label class="field">Email <input required type="email" data-testid="checkout-email" /></label>
+        <button class="btn" type="submit" data-testid="button-place-order">Place order</button>
+      </form>
+      <p class="alert alert--success" data-testid="order-confirmation" role="status"></p>
+    </section>
+    <div id="site-footer-mount"></div>
+  </main>
+  <script src="../js/nav.js"></script><script src="../js/workflows.js"></script><script>renderSiteNav("../", "nav-workflows"); renderSiteFooter();</script>
+</body>
+</html>

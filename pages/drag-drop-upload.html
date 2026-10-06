@@ -11,7 +11,7 @@
       } catch (e) {}
     })();
   </script>
-  <title>Drag, Drop &amp; Upload - Automation Testground</title>
+  <title>Drag, Drop &amp; Upload - Automation Playground</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
@@ -21,11 +21,13 @@
   </header>
 
   <main class="page">
+    <span class="difficulty difficulty--intermediate">Intermediate</span>
     <h1 class="page__title" data-testid="page-title">Drag, Drop &amp; Upload</h1>
     <p class="page__description">
       Drag items between lists, upload a file (nothing leaves your browser), and interact with
       content inside an iframe.
     </p>
+    <aside class="skills-callout"><strong>What can I automate here?</strong> Skills you can practise: HTML5 drag-and-drop, multiselect options, file chooser validation, removing a chosen file, and frame switching.</aside>
 
     <section class="card" data-testid="section-drag-drop">
       <h2 class="card__title">Drag and drop</h2>
@@ -65,7 +67,8 @@
 
     <section class="card" data-testid="section-file-upload">
       <h2 class="card__title">File upload</h2>
-      <input type="file" id="file-input" data-testid="file-input" />
+      <input type="file" id="file-input" accept=".txt,.csv,.json,.png,.jpg,.jpeg,.pdf" multiple data-testid="file-input" />
+      <div class="file-drop-zone" data-testid="file-drop-zone" tabindex="0">Drop files here or use the file chooser. Files stay in this browser.</div>
       <div class="file-drop-result" id="file-upload-result" data-testid="file-upload-result"></div>
     </section>
 

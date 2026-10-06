@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Locator Playground - Automation Playground</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header"><div id="site-nav-mount"></div></header>
+  <main class="page">
+    <span class="difficulty difficulty--advanced">Advanced</span>
+    <h1 class="page__title" data-testid="page-title">Locator Playground</h1>
+    <p class="page__description">Compare readable, stable locators with intentionally brittle alternatives. Every challenge has a deterministic target.</p>
+    <aside class="skills-callout"><strong>What can I automate here?</strong> Skills you can practise: ID, name, class, CSS, XPath relationships, link text, partial link text, tag, test id, role, and accessible name.</aside>
+    <section class="card">
+      <h2 class="card__title">Stable and accessible examples</h2>
+      <label class="field">Name attribute <input name="studentName" data-testid="locator-name-input" /></label>
+      <button id="stable-action" class="btn" data-testid="locator-stable" aria-label="Save training example">Save example</button>
+      <button class="btn btn--secondary" data-testid="locator-role-button">Continue</button>
+      <a href="elements.html" data-testid="locator-link-text">Explore elements</a>
+      <p><a href="forms.html" data-testid="locator-partial-link">Open the registration and validation exercise</a></p>
+      <p class="field-hint">Try accessible role/name or label-based queries first. The `data-testid` is the robust fallback.</p>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Intentional brittle selectors</h2>
+      <p>These IDs and classes change when the page reloads. A stable test id remains available for comparison.</p>
+      <button class="btn changing-selector-class" data-testid="locator-dynamic-id" id="dynamic-locator-id">Dynamic ID and class</button>
+      <ul data-testid="locator-positional-list"><li>First repeated item</li><li>Second repeated item</li><li>Third repeated item</li></ul>
+      <div class="nested-challenge" data-testid="locator-nested-challenge"><div><section><article><span>Deeply nested text</span></article></section></div></div>
+      <p class="notice">Avoid positional selectors, changing IDs/classes, and long DOM chains when a label, role/name, or stable test id identifies the same target.</p>
+    </section>
+    <section class="card">
+      <h2 class="card__title">Relationship challenge DOM</h2>
+      <p>Use the surrounding structure to explore parent/child, ancestor, and following/preceding sibling relationships.</p>
+      <div class="challenge-list" data-testid="locator-relations">
+        <section class="challenge-row" data-testid="relation-row-one"><h3>Request 101</h3><span>Status: Ready</span><button class="same-class" data-testid="relation-approve-one">Approve</button><button class="same-class" data-testid="relation-reject-one">Reject</button></section>
+        <section class="challenge-row" data-testid="relation-row-two"><h3>Request 102</h3><span>Status: Pending</span><button class="same-class" data-testid="relation-approve-two">Approve</button><button class="same-class" data-testid="relation-reject-two">Reject</button></section>
+      </div>
+    </section>
+    <p><a href="advanced.html">Return to Advanced Challenges</a></p>
+    <div id="site-footer-mount"></div>
+  </main>
+  <script src="../js/nav.js"></script><script src="../js/playground.js"></script><script>renderSiteNav("../", "nav-advanced"); renderSiteFooter();</script>
+</body>
+</html>

@@ -13,11 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   var logoutButton = document.getElementById("logout-button");
-  if (logoutButton) {
-    logoutButton.addEventListener("click", function () {
-      localStorage.removeItem("testground_logged_in");
-      localStorage.removeItem("testground_username");
-      window.location.href = "login.html";
-    });
+  var expiryButton = document.querySelector('[data-testid="button-simulate-session-expiry"]');
+  function endSession(destination) {
+    localStorage.removeItem("testground_logged_in");
+    localStorage.removeItem("testground_username");
+    window.location.href = destination;
   }
+  if (logoutButton) {
+    logoutButton.addEventListener("click", function () { endSession("login.html"); });
+  }
+  if (expiryButton) expiryButton.addEventListener("click", function () { endSession("login.html?expired=1"); });
 });

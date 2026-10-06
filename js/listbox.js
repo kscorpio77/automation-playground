@@ -12,6 +12,13 @@ function initListbox(rootId, optionLabels) {
   var optionsContainer = root.querySelector('[data-role="options"]');
   var countLabel = root.querySelector('[data-role="selected-count"]');
   var clearBtn = root.querySelector('[data-role="clear"]');
+  var panel = root.querySelector('[data-role="options"]');
+  trigger.setAttribute("aria-haspopup", "listbox");
+  trigger.setAttribute("aria-expanded", "false");
+  trigger.setAttribute("aria-controls", rootId + "-options");
+  panel.id = rootId + "-options";
+  panel.setAttribute("role", "listbox");
+  panel.setAttribute("aria-multiselectable", "true");
 
   var selected = {};
   var rowsByValue = {};
@@ -47,11 +54,15 @@ function initListbox(rootId, optionLabels) {
     var row = document.createElement("div");
     row.className = "listbox__option";
     row.setAttribute("role", "option");
+    row.setAttribute("aria-selected", "false");
+    row.tabIndex = 0;
+    row.setAttribute("aria-label", label);
     row.setAttribute("data-testid", testIdPrefix + "-option-" + value);
 
     var checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.tabIndex = -1;
+    checkbox.setAttribute("aria-hidden", "true");
 
     var text = document.createElement("span");
     text.textContent = label;
@@ -64,12 +75,20 @@ function initListbox(rootId, optionLabels) {
         delete selected[value];
         checkbox.checked = false;
         row.classList.remove("is-selected");
+        row.setAttribute("aria-selected", "false");
       } else {
         selected[value] = true;
         checkbox.checked = true;
         row.classList.add("is-selected");
+        row.setAttribute("aria-selected", "true");
       }
       updateSummary();
+    });
+    row.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        row.click();
+      }
     });
 
     rowsByValue[value] = row;
@@ -78,10 +97,12 @@ function initListbox(rootId, optionLabels) {
 
   function openPanel() {
     root.classList.add("is-open");
+    trigger.setAttribute("aria-expanded", "true");
   }
 
   function closePanel() {
     root.classList.remove("is-open");
+    trigger.setAttribute("aria-expanded", "false");
   }
 
   trigger.addEventListener("click", function () {
@@ -97,6 +118,7 @@ function initListbox(rootId, optionLabels) {
     Object.keys(rowsByValue).forEach(function (value) {
       var row = rowsByValue[value];
       row.classList.remove("is-selected");
+      row.setAttribute("aria-selected", "false");
       row.querySelector('input[type="checkbox"]').checked = false;
     });
     updateSummary();

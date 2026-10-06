@@ -11,7 +11,7 @@
       } catch (e) {}
     })();
   </script>
-  <title>Dashboard - Automation Testground</title>
+  <title>Dashboard - Automation Playground</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
@@ -21,10 +21,13 @@
   </header>
 
   <main class="page">
+    <span class="difficulty difficulty--intermediate">Intermediate</span>
     <h1 class="page__title" data-testid="page-title">Dashboard</h1>
+    <aside class="skills-callout"><strong>What can I automate here?</strong> Skills you can practise: protected routes, persistent browser state, session expiration, and logout.</aside>
 
     <div class="card" data-testid="protected-content">
       <p data-testid="dashboard-welcome" id="dashboard-welcome">Welcome!</p>
+      <button class="btn btn--secondary" data-testid="button-simulate-session-expiry">Simulate session expiry</button>
       <button class="btn btn--danger" id="logout-button" data-testid="button-logout">Log out</button>
     </div>
 
@@ -42,6 +45,7 @@
     renderSelectorReference("selector-ref-mount", [
       "protected-content",
       "dashboard-welcome",
+      "button-simulate-session-expiry",
       "button-logout"
     ], "Only reachable after signing in on the login page; visiting it directly without a session redirects back to login.html.");
   </script>

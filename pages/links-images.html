@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Links &amp; Images - Automation Playground</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header class="site-header"><div id="site-nav-mount"></div></header>
+  <main class="page">
+    <span class="difficulty difficulty--beginner">Beginner</span>
+    <h1 class="page__title" data-testid="page-title">Links &amp; Images</h1>
+    <p class="page__description">Practice link targets, URL schemes, image attributes, and deliberate missing-resource cases.</p>
+    <aside class="skills-callout"><strong>What can I automate here?</strong> Skills you can practise: link text and destination checks, new-tab handling, image visibility, alt text, broken-resource detection, and anchor navigation.</aside>
+    <section class="card">
+      <h2 class="card__title">Links</h2>
+      <div class="link-list">
+        <a href="../index.html" data-testid="link-internal">Internal link to Home</a>
+        <a href="https://example.com" target="_blank" rel="noopener noreferrer" data-testid="link-external">External link (example.com)</a>
+        <a href="#image-exercises" data-testid="link-anchor">Jump to image exercises</a>
+        <a href="forms.html" data-testid="link-same-tab">Open Forms in this tab</a>
+        <a href="window-child.html" target="_blank" rel="noopener" data-testid="link-new-tab">Open a unique child tab</a>
+        <a href="mailto:training@example.test" data-testid="link-email">Send an email</a>
+        <a href="tel:+15550100" data-testid="link-phone">Call the training number</a>
+        <a href="../downloads/sample.txt" download data-testid="link-download-text">Download a text file</a>
+        <a href="missing-training-page.html" data-testid="link-intentionally-broken">Intentionally broken link (training fixture)</a>
+        <button class="btn btn--secondary" type="button" data-testid="button-generate-link">Generate a link</button>
+        <div data-testid="dynamic-link-container" aria-live="polite"></div>
+      </div>
+      <p class="notice">The broken link above is intentionally unavailable; it is not an application defect.</p>
+    </section>
+    <section class="card" id="image-exercises">
+      <h2 class="card__title">Images</h2>
+      <div class="image-grid">
+        <figure><img src="../assets/favicon.svg" alt="Automation Playground brand mark" data-testid="image-normal" /><figcaption>Local image with descriptive alt text</figcaption></figure>
+        <figure><a href="../index.html" data-testid="link-image"><img src="../assets/favicon.svg" alt="Return to the home page" data-testid="image-clickable" /></a><figcaption>Clickable image link</figcaption></figure>
+        <figure><img class="responsive-image" src="../assets/favicon.svg" alt="Responsive brand mark" data-testid="image-responsive" title="Native title tooltip" /><figcaption>Responsive image with title tooltip</figcaption></figure>
+        <figure><img src="../assets/image-intentionally-missing.svg" alt="Intentionally broken training fixture" data-testid="image-intentionally-broken" /><figcaption>Intentionally broken image for naturalWidth checks</figcaption></figure>
+        <figure><img class="hidden" src="../assets/favicon.svg" alt="Delayed image" data-testid="image-delayed" /><figcaption data-testid="image-delayed-caption">Image appears after 1 second</figcaption></figure>
+      </div>
+      <p data-testid="image-tooltip" class="tooltip-custom" tabindex="0">Hover or focus for a custom tooltip<span role="tooltip">Custom JavaScript tooltip</span></p>
+    </section>
+    <div id="site-footer-mount"></div>
+  </main>
+  <script src="../js/nav.js"></script><script src="../js/playground.js"></script><script>renderSiteNav("../", "nav-links-images"); renderSiteFooter();</script>
+</body>
+</html>

@@ -1,138 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automation Playground</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="css/styles.css" />
   <script>
-    (function () {
-      try {
-        var t = localStorage.getItem("testground_theme");
-        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-      } catch (e) {}
-    })();
+    try {
+      var savedTheme = localStorage.getItem("testground_theme");
+      if (savedTheme === "light" || savedTheme === "dark") document.documentElement.setAttribute("data-theme", savedTheme);
+    } catch (error) {}
   </script>
-  <title>Automation Testground</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div id="site-nav-mount"></div>
-  </header>
-
+  <header class="site-header"><div id="site-nav-mount"></div></header>
   <main class="page">
-    <div class="hero">
-      <span class="hero-badge"><span class="hero-badge__dot"></span> Stable DOM, forever</span>
-      <h1 class="page__title" data-testid="page-title">Automation Testground</h1>
-      <p class="page__description">
-        A small, static practice site for writing browser automation scripts (Selenium, Playwright,
-        Cypress, Puppeteer, etc). Every interactive element carries a stable
-        <code>data-testid</code> attribute that will not change within this major version, so
-        scripts you write against this version keep passing.
-      </p>
-    </div>
-
-    <div class="card" style="margin-bottom: 32px;">
-      <h2 class="card__title">Quick start</h2>
-      <div class="code-block">
-        <div class="code-block__header">
-          <span class="code-block__label">Shell</span>
-          <button type="button" class="copy-btn" id="quickstart-copy" data-testid="button-copy-quickstart">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-            <span>Copy</span>
-          </button>
-        </div>
-        <pre><code id="quickstart-code">git clone https://github.com/developerpreetiverma/automation-testground.git
-cd automation-testground
-docker build -t automation-testground:1.2.0 .
-docker run --rm -p 8080:80 automation-testground:1.2.0</code></pre>
+    <section class="hero">
+      <span class="hero-badge"><span class="hero-badge__dot"></span> Deterministic · offline-ready · selector-stable</span>
+      <h1 class="page__title" data-testid="page-title">Automation Playground</h1>
+      <p class="page__description">A friendly, hands-on browser automation training site. Practise everyday controls, synchronization, accessible locators, and realistic user journeys with plain HTML, CSS, and JavaScript.</p>
+      <p>For Selenium, Playwright, Cypress, WebdriverIO, Puppeteer, Robot Framework, and other browser tools.</p>
+    </section>
+    <section class="card quickstart-card">
+      <h2 class="card__title">Quick start with Docker</h2>
+      <div class="code-block"><div class="code-block__header"><span class="code-block__label">Shell</span><button type="button" class="copy-btn" id="quickstart-copy" data-testid="button-copy-quickstart"><span>Copy</span></button></div>
+        <pre><code id="quickstart-code">git clone https://github.com/kscorpio77/automation-playground.git
+cd automation-playground
+docker build -t automation-playground:1.3.0 .
+docker run --rm -p 8080:80 automation-playground:1.3.0</code></pre>
       </div>
-    </div>
+      <p data-testid="quickstart-copy-status" aria-live="polite"></p>
+    </section>
 
-    <div class="home-grid" data-testid="home-links">
-      <a href="pages/forms.html" data-testid="home-link-forms">
-        <div class="home-card">
-          <div class="home-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-          </div>
-          <h2 class="home-card__title">Forms &amp; Validation</h2>
-          <p class="home-card__desc">Text fields, dropdowns, checkboxes, radios, client-side validation errors.</p>
-          <span class="home-card__arrow">Open page &rarr;</span>
-        </div>
-      </a>
-      <a href="pages/dynamic-content.html" data-testid="home-link-dynamic-content">
-        <div class="home-card">
-          <div class="home-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-          </div>
-          <h2 class="home-card__title">Dynamic Content &amp; Waits</h2>
-          <p class="home-card__desc">Spinners, delayed elements, buttons that enable after a delay, progress bars.</p>
-          <span class="home-card__arrow">Open page &rarr;</span>
-        </div>
-      </a>
-      <a href="pages/tables.html" data-testid="home-link-tables">
-        <div class="home-card">
-          <div class="home-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6" fill="currentColor" stroke="none"/><rect x="12" y="8" width="3" height="10" fill="currentColor" stroke="none"/><rect x="17" y="5" width="3" height="13" fill="currentColor" stroke="none"/></svg>
-          </div>
-          <h2 class="home-card__title">Tables &amp; Data</h2>
-          <p class="home-card__desc">Sortable columns, search filtering, pagination over a static dataset.</p>
-          <span class="home-card__arrow">Open page &rarr;</span>
-        </div>
-      </a>
-      <a href="pages/modals-alerts.html" data-testid="home-link-modals-alerts">
-        <div class="home-card">
-          <div class="home-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <h2 class="home-card__title">Modals &amp; Alerts</h2>
-          <p class="home-card__desc">Native alert/confirm/prompt dialogs, a custom modal, and a hover tooltip.</p>
-          <span class="home-card__arrow">Open page &rarr;</span>
-        </div>
-      </a>
-      <a href="pages/drag-drop-upload.html" data-testid="home-link-drag-drop-upload">
-        <div class="home-card">
-          <div class="home-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/></svg>
-          </div>
-          <h2 class="home-card__title">Drag, Drop &amp; Upload</h2>
-          <p class="home-card__desc">Drag-and-drop between lists, a file input, and an embedded iframe.</p>
-          <span class="home-card__arrow">Open page &rarr;</span>
-        </div>
-      </a>
-      <a href="pages/login.html" data-testid="home-link-login">
-        <div class="home-card">
-          <div class="home-card__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-          </div>
-          <h2 class="home-card__title">Mocked Login Flow</h2>
-          <p class="home-card__desc">Login form, a protected dashboard page, and logout &mdash; state kept in localStorage.</p>
-          <span class="home-card__arrow">Open page &rarr;</span>
-        </div>
-      </a>
+    <div data-testid="home-links">
+    <section class="exercise-section">
+      <div class="section-heading"><h2>Beginner</h2><p>Start with familiar controls and clear feedback.</p></div>
+      <div class="home-grid">
+        <a href="pages/elements.html" data-testid="home-link-elements"><article class="home-card"><span class="difficulty difficulty--beginner">Beginner</span><h3 class="home-card__title">Input Elements &amp; Controls</h3><p class="home-card__desc">Inputs, buttons, checkboxes, radios, dropdowns, and sliders.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+        <a href="pages/forms.html" data-testid="home-link-forms"><article class="home-card"><span class="difficulty difficulty--beginner">Beginner</span><h3 class="home-card__title">Forms &amp; Validation</h3><p class="home-card__desc">Validation, form controls, dependent fields, and a custom calendar.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+        <a href="pages/links-images.html" data-testid="home-link-links-images"><article class="home-card"><span class="difficulty difficulty--beginner">Beginner</span><h3 class="home-card__title">Links &amp; Images</h3><p class="home-card__desc">Link destinations, tabs, images, alt text, and broken fixtures.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+      </div>
+    </section>
+
+    <section class="exercise-section">
+      <div class="section-heading"><h2>Intermediate</h2><p>Practise synchronization, data, and real interactions.</p></div>
+      <div class="home-grid">
+        <a href="pages/tables.html" data-testid="home-link-tables"><article class="home-card"><span class="difficulty difficulty--intermediate">Intermediate</span><h3 class="home-card__title">Tables &amp; Data</h3><p class="home-card__desc">Sortable, searchable, paginated records.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+        <a href="pages/dynamic-content.html" data-testid="home-link-dynamic-content"><article class="home-card"><span class="difficulty difficulty--intermediate">Intermediate</span><h3 class="home-card__title">Dynamic Content &amp; Waits</h3><p class="home-card__desc">Delayed elements, spinners, enabled controls, and progress.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+        <a href="pages/interactions.html" data-testid="home-link-interactions"><article class="home-card"><span class="difficulty difficulty--intermediate">Intermediate</span><h3 class="home-card__title">Interactions &amp; Components</h3><p class="home-card__desc">Mouse and keyboard, tabs, accordions, toasts, windows, and downloads.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+        <a href="pages/modals-alerts.html" data-testid="home-link-modals-alerts"><article class="home-card"><span class="difficulty difficulty--intermediate">Intermediate</span><h3 class="home-card__title">Modals &amp; Alerts</h3><p class="home-card__desc">Native browser dialogs, application modals, and tooltips.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+        <a href="pages/drag-drop-upload.html" data-testid="home-link-drag-drop-upload"><article class="home-card"><span class="difficulty difficulty--intermediate">Intermediate</span><h3 class="home-card__title">Drag, Drop &amp; Upload</h3><p class="home-card__desc">Drag-and-drop, custom multiselect, file inputs, and an iframe.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+      </div>
+    </section>
+
+    <section class="exercise-section">
+      <div class="section-heading"><h2>Advanced</h2><p>Explore deliberately challenging browser behavior with stable ways to assert outcomes.</p></div>
+      <div class="home-grid">
+        <a href="pages/advanced.html" data-testid="home-link-advanced"><article class="home-card"><span class="difficulty difficulty--advanced">Advanced</span><h3 class="home-card__title">Advanced Challenges</h3><p class="home-card__desc">Shadow DOM, stale nodes, dynamic IDs, nested frames, and bounded scrolling.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+        <a href="pages/locator-playground.html" data-testid="home-link-locators"><article class="home-card"><span class="difficulty difficulty--advanced">Advanced</span><h3 class="home-card__title">Locator Playground</h3><p class="home-card__desc">Compare accessible, stable locators with intentionally brittle selectors.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+        <a href="pages/broken-elements.html" data-testid="home-link-broken-fixtures"><article class="home-card"><span class="difficulty difficulty--intermediate">Intermediate</span><h3 class="home-card__title">Broken Elements</h3><p class="home-card__desc">Inspect clearly labelled broken resources and an unusual valid input.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+      </div>
+    </section>
+
+    <section class="exercise-section">
+      <div class="section-heading"><h2>End-to-End Scenarios</h2><p>Combine interactions into workflows that resemble real applications.</p></div>
+      <div class="home-grid">
+        <a href="pages/login.html" data-testid="home-link-login"><article class="home-card"><span class="difficulty difficulty--intermediate">Intermediate</span><h3 class="home-card__title">Mocked Login Flow</h3><p class="home-card__desc">Valid and invalid login, protected dashboard, persistence, and logout.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+        <a href="pages/workflows.html" data-testid="home-link-workflows"><article class="home-card"><span class="difficulty difficulty--intermediate">Intermediate</span><h3 class="home-card__title">Employee &amp; Shopping Journeys</h3><p class="home-card__desc">CRUD employee management and a mock shopping cart-to-checkout workflow.</p><span class="home-card__arrow">Open exercise →</span></article></a>
+      </div>
+    </section>
     </div>
   </main>
-
   <div id="site-footer-mount"></div>
-
   <script src="js/nav.js"></script>
   <script>
     renderSiteNav("", "nav-home");
     renderSiteFooter();
-
-    var quickstartCopyBtn = document.getElementById("quickstart-copy");
-    quickstartCopyBtn.addEventListener("click", function () {
-      var text = document.getElementById("quickstart-code").textContent;
-      var label = quickstartCopyBtn.querySelector("span");
-      var original = label.textContent;
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function () {
-          label.textContent = "Copied!";
-          setTimeout(function () {
-            label.textContent = original;
-          }, 1500);
-        });
+    document.getElementById("quickstart-copy").addEventListener("click", function () {
+      var status = document.querySelector('[data-testid="quickstart-copy-status"]');
+      if (!navigator.clipboard || !navigator.clipboard.writeText) {
+        status.textContent = "Clipboard is unavailable here; select and copy the commands.";
+        return;
       }
+      navigator.clipboard.writeText(document.getElementById("quickstart-code").textContent).then(function () {
+        status.textContent = "Commands copied.";
+      }, function () {
+        status.textContent = "Clipboard permission denied; select and copy the commands.";
+      });
     });
   </script>
 </body>
